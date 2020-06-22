@@ -6,11 +6,13 @@ public class Origin {
 
 		private String name;
 		private String klasse;
-		private Icon icon = new ImageIcon(System.getProperty("user.dir")+("/resources/character/erdmann.jpg"));
+		
+		private Icon icon = new ImageIcon(System.getProperty("user.dir")+("/character/erdmann.jpg"));
 			
-		public Origin(String name, String klasse) {
+		public Origin(String name, String klasse, Icon icon) {
 			this.name = name;
 			this.klasse = klasse;
+			this.icon = icon;
 		}
 		
 		public String getName() {

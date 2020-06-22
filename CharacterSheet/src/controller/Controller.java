@@ -22,9 +22,9 @@ public class Controller {
 		ArrayList<Skill> skills = new ArrayList<>();
 		skills.add(new Skill("Pew pew", 5));
 		//Konstruktor für Skill?
-		c.eins = new Character("Odlon", 3, inv, skills, new Origin("Dwarf","Krieger"));
+		c.eins = new Character("Odlon", 3, inv, skills, new Origin("Dwarf","Krieger",null));
 	
-		MasterGui gui = new MasterGui(c);
+		MasterGui gui = new MasterGui();
 	}
 
 }
