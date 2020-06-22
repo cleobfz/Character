@@ -13,7 +13,7 @@ public class MasterGui {
 		
 		frame = new JFrame();
 		frame.setTitle("MonsterSpalter2020");
-		frame.setLocation(500,300);
+		frame.setLocation(100,100);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		
