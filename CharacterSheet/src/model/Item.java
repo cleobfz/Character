@@ -10,12 +10,11 @@ public class Item {
 	private int statbonus;
 	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\ak47.png");
 	
-	public Item(String name, int statbonus, Icon icon) {
+	public Item(String name, int statbonus) {
 		this.name = name;
 		this.statbonus = statbonus;
-		this.icon = icon;
 	}
-
+	
 	
 	public String getName() {
 		return name;
@@ -46,22 +45,22 @@ public class Item {
 		this.icon = icon;
 	}
 
-	public static void main(String[] args) {
-		String name = "AK47";
-		int statbonus = 20;
-		Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\item\\ak47.png");
-
-		System.out.println(name);
-		System.out.println(statbonus);
-		System.out.println(icon);
-		JFrame f = new JFrame();
-		JButton b = new JButton();
-		b.setIcon(icon);
-		f.add(b);
-		f.setVisible(true);
-		Item i = new Item(name, statbonus, icon);
-		System.out.println(i);
-	}
+//	public static void main(String[] args) {
+//		String name = "AK47";
+//		int statbonus = 20;
+//		Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\item\\ak47.png");
+//
+//		System.out.println(name);
+//		System.out.println(statbonus);
+//		System.out.println(icon);
+//		JFrame f = new JFrame();
+//		JButton b = new JButton();
+//		b.setIcon(icon);
+//		f.add(b);
+//		f.setVisible(true);
+//		Item i = new Item(name, statbonus);
+//		System.out.println(i);
+//	}
 	
 	@Override
 	public String toString() {
