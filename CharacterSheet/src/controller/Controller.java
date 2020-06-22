@@ -16,7 +16,7 @@ public class Controller {
 	public static void main(String[] args) {
 		Controller c = new Controller();
 		ArrayList<Item> inv = new ArrayList<>();
-		inv.add(new Item("Peng", 2, null));
+		inv.add(new Item("Peng", 2));
 		//Origin origin
 		//Konstruktor für Origin?
 		ArrayList<Skill> skills = new ArrayList<>();
