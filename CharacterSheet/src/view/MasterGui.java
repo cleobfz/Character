@@ -12,6 +12,7 @@ public class MasterGui {
 
 	public MasterGui() {//Controller c) {
 //		this.c = c;
+		this.c = c;
 		
 		JLabel centerGui = new JLabel();
 		//centergui muss noch implementiert werden hier steht nur ein Platzhalter

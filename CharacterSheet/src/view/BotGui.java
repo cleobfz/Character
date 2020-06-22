@@ -17,6 +17,7 @@ public class BotGui extends JPanel {
 		setLayout(new BorderLayout());
 		
 		//movegui
+		
 		movegui = new JPanel();
 		movegui.setLayout(new GridLayout(3, 3, 1, 1));
 		movegui.setBorder(new LineBorder(new Color(0, 0, 0), 5));
