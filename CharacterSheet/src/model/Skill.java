@@ -7,7 +7,7 @@ public class Skill {
 	String name;
 	int damagevalue;
 	
-	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\skill\\open-book.png");
+	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\skill\\open-book.png");
 	
 	public Skill(String name, int damagevalue) {
 		this.name = name;

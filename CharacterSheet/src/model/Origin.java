@@ -7,7 +7,7 @@ public class Origin {
 		private String name;
 		private String klasse;
 		
-		private Icon icon = new ImageIcon(System.getProperty("user.dir")+("/character/erdmann.jpg"));
+		private Icon icon = new ImageIcon(System.getProperty("user.dir")+("/resources/character/erdmann.jpg"));
 			
 		public Origin(String name, String klasse) {
 			this.name = name;
