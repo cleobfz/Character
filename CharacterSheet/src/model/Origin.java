@@ -9,10 +9,10 @@ public class Origin {
 		
 		private Icon icon = new ImageIcon(System.getProperty("user.dir")+("/character/erdmann.jpg"));
 			
-		public Origin(String name, String klasse, Icon icon) {
+		public Origin(String name, String klasse) {
 			this.name = name;
 			this.klasse = klasse;
-			this.icon = icon;
+			
 		}
 		
 		public String getName() {

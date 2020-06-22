@@ -7,16 +7,21 @@ import javax.swing.*;
 import controller.Controller;
 
 public class MasterGui {
-	protected Controller c;
+	protected Controller controller;
 	protected JFrame frame;
 
-	public MasterGui() {//Controller c) {
-//		this.c = c;
-		this.c = c;
+	public MasterGui(Controller controller) {
+
+		this.controller = controller;
 		
 		JLabel centerGui = new JLabel();
 		//centergui muss noch implementiert werden hier steht nur ein Platzhalter
+		if(controller.getCharacter() == null){
 		centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
+		}
+		else{
+			centerGui.setIcon(controller.getCharacter().getOrigin().getIcon());
+		}
 		centerGui.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		frame = new JFrame();
@@ -34,7 +39,4 @@ public class MasterGui {
 		frame.setVisible(true);		
 	}
 	
-	public static void main(String[] args) {
-		new MasterGui();
-	}
 }

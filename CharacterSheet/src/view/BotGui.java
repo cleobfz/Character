@@ -66,7 +66,7 @@ public class BotGui extends JPanel {
 		add(actgui,BorderLayout.CENTER);
 		
 		JButton btnAct_atk = new JButton();
-		btnAct_atk.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/act/act_atk.png")));
+		btnAct_atk.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\resources\\skill\\open-book.png"));
 		actgui.add(btnAct_atk);
 		
 		JButton btnAct_def = new JButton();
