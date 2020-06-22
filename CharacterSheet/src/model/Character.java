@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 public class Character {
 	String name;
+	
+	int hp;
 	int stat;
 	ArrayList<Item> inventory = new ArrayList<>();
 	ArrayList<Skill> skill = new ArrayList<>();
 	Origin origin;
 	
-	public Character(String name, int stat, ArrayList<Item> inventory, ArrayList<Skill> skill, Origin origin) {
+	public Character(String name, int stat,int hp, ArrayList<Item> inventory, ArrayList<Skill> skill, Origin origin) {
 		
 		this.name = name;
 		this.stat = stat;
+		this.hp = hp;
 		this.inventory = inventory;
 		this.skill = skill;
 		this.origin = origin;
@@ -48,10 +51,18 @@ public class Character {
 	public void setOrigin(Origin origin) {
 		this.origin = origin;
 	}
+	
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
 
 	@Override
 	public String toString() {
-		return  name + ", " + stat + " ";
+		return  "Charactername: "+name + ", Statbonus: " + stat + ", Healthpoints: " + hp + " ";
 	}
 
 	//equals and hash Method

@@ -8,9 +8,11 @@ import javax.swing.JFrame;
 public class Item {
 	private String name;
 	private int statbonus;
+	private int hpbonus;
 	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\ak47.png");
 	
-	public Item(String name, int statbonus) {
+	public Item(String name, int statbonus, int hpbonus) {
+		this.hpbonus = hpbonus;
 		this.name = name;
 		this.statbonus = statbonus;
 	}
@@ -44,27 +46,22 @@ public class Item {
 	public void setIcon(Icon icon) {
 		this.icon = icon;
 	}
-
-//	public static void main(String[] args) {
-//		String name = "AK47";
-//		int statbonus = 20;
-//		Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\item\\ak47.png");
-//
-//		System.out.println(name);
-//		System.out.println(statbonus);
-//		System.out.println(icon);
-//		JFrame f = new JFrame();
-//		JButton b = new JButton();
-//		b.setIcon(icon);
-//		f.add(b);
-//		f.setVisible(true);
-//		Item i = new Item(name, statbonus);
-//		System.out.println(i);
-//	}
 	
+	
+	
+	public int getHpbonus() {
+		return hpbonus;
+	}
+
+
+	public void setHpbonus(int hpbonus) {
+		this.hpbonus = hpbonus;
+	}
+
+
 	@Override
 	public String toString() {
-		return name + ", " + statbonus + ", " + icon + " ";
+		return "Itemname: "+ name + ",Statbonus: " + statbonus + ",HPbonus: " + hpbonus + " ";
 	}
 	
 	

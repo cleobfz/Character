@@ -1,6 +1,5 @@
 package model;
 
-import model.Eigenschaften;
 import javax.swing.*;
 
 public class Origin {
@@ -34,10 +33,10 @@ public class Origin {
 		public Icon getIcon() {
 			return icon;
 		}
-
+		
 		@Override
 		public String toString() {
-			return  name + ", " + klasse + ", " + icon + " ";
+			return  "Originname: "+name + ", Class: " + klasse + ", ";
 		}
 		
 		

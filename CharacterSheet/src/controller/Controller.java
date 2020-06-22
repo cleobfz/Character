@@ -17,13 +17,13 @@ public class Controller {
 	public static void main(String[] args) {
 		Controller controller = new Controller();
 		ArrayList<Item> inv = new ArrayList<>();
-		inv.add(new Item("Peng", 2));
+		inv.add(new Item("Peng", 2,2));
 		//Origin origin
 		//Konstruktor für Origin?
 		ArrayList<Skill> skills = new ArrayList<>();
 		skills.add(new Skill("Pew pew", 5));
 		//Konstruktor für Skill?
-		controller.eins = new Character("Odlon", 3, inv, skills, new Origin("Dwarf","Krieger"));
+		controller.eins = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
 	
 		MasterGui gui = new MasterGui(controller);
 	}
