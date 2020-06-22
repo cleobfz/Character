@@ -1,8 +1,13 @@
 package model;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 public class Skill {
 	String name;
 	int damagevalue;
+	
+	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\skill\\open-book.png");
 	
 	public Skill(String name, int damagevalue) {
 		this.name = name;
@@ -19,6 +24,10 @@ public class Skill {
 	}
 	public void setDmagevalue(int damagevalue) {
 		this.damagevalue = damagevalue;
+	}
+	
+	public Icon getIcon() {
+		return icon;
 	}
 	
 	@Override
