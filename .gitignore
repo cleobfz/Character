@@ -1,0 +1,10 @@
+.classpath
+.project
+bin/controller/Controller.class
+bin/model/Character.class
+bin/model/Item.class
+bin/model/Origin.class
+bin/model/Skill.class
+bin/view/BotGui.class
+bin/view/MasterGui.class
+bin/view/TopGui.class
