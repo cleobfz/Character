@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+import controller.Controller;
+
 public class MasterGui {
-//	protected Controller c;
+	protected Controller c;
 	protected JFrame frame;
 
-	public MasterGui() {//Controller c) {
-//		this.c = c;
+	public MasterGui(Controller c) {
+		this.c = c;
 		
 		frame = new JFrame();
 		frame.setTitle("MonsterSpalter2020");
@@ -25,7 +27,4 @@ public class MasterGui {
 		frame.setVisible(true);		
 	}
 	
-	public static void main(String[] args) {
-		new MasterGui();
-	}
 }

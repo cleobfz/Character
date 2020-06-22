@@ -22,9 +22,14 @@ public class TopGui extends JPanel {
 		chargui.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		add(chargui, BorderLayout.WEST);
 		
+		model.Character c = master.c.getCharacter();
 		//chargui.charIco	
 		JLabel lblCharIco = new JLabel();
-		lblCharIco.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/character/char_empty.png"))); //char werte implementieren !!
+		if(c==null) {
+			lblCharIco.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/character/char_empty.png"))); //char werte implementieren !!
+		} else {
+			lblCharIco.setIcon(c.getOrigin().getIcon());
+		}
 		chargui.add(lblCharIco,BorderLayout.CENTER);
 		
 		//chargui.charstat
