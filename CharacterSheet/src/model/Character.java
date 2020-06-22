@@ -3,13 +3,12 @@ package model;
 import java.util.ArrayList;
 
 public class Character {
-	String name;
-	
-	int hp;
-	int stat;
-	ArrayList<Item> inventory = new ArrayList<>();
-	ArrayList<Skill> skill = new ArrayList<>();
-	Origin origin;
+	private String name;
+	private int hp;
+	private int stat;
+	private ArrayList<Item> inventory = new ArrayList<>();
+	private ArrayList<Skill> skill = new ArrayList<>();
+	private Origin origin;
 	
 	public Character(String name, int stat,int hp, ArrayList<Item> inventory, ArrayList<Skill> skill, Origin origin) {
 		
@@ -21,6 +20,20 @@ public class Character {
 		this.origin = origin;
 	}
 	
+	
+	public int attack(){
+		
+		int itemDmg = 0;
+		for(int i =0; i < inventory.size(); i++){
+			itemDmg += inventory.get(i).getStatbonus();
+		}
+		
+		int totalDmg = itemDmg + stat;
+		return totalDmg;
+		
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -31,7 +44,11 @@ public class Character {
 		return stat;
 	}
 	public void setStat(int stat) {
+		if(stat > 10){
+			this.stat = 10;
+		} else {
 		this.stat = stat;
+		}
 	}
 	public ArrayList<Item> getInventory() {
 		return inventory;
@@ -57,7 +74,15 @@ public class Character {
 	}
 
 	public void setHp(int hp) {
+		if(hp < 30){
+			hp= 30;
+		}
+		if(hp > 100){
+			hp = 100;
+		}
+		else {
 		this.hp = hp;
+		}
 	}
 
 	@Override
