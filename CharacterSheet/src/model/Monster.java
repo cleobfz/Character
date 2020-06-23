@@ -1,18 +1,30 @@
 package model;
 
-public abstract class Monster {
+abstract class Monster {
 
 	private int hp;
 	private int dmg;
-	String Monster= new String();
-	private int attack;
+	String name= new String();
+	private String attack;
 	abstract int attack();
 
-	public Monster(int hp, int dmg, String Monster, int attack) {
+	public String getAttack() {
+		return attack;
+	}
+
+	public void setAttack(String attack) {
+		this.attack = attack;
+	}
+
+	public Monster(int hp, int dmg, String name, String attack) {
 		this.hp=hp;
 		this.dmg=dmg;
-		this.Monster=Monster;
+		this.name=name;
 		this.attack=attack;
+		}
+
+	public String getName() {
+		return name;
 	}
 
 	public int getHp() {
@@ -20,7 +32,7 @@ public abstract class Monster {
 	}
 
 	public void setHp(int hp) {
-		this.hp = hp;
+
 	}
 
 	public int getDmg() {
@@ -28,30 +40,22 @@ public abstract class Monster {
 	}
 
 	public void setDmg(int dmg) {
-		this.dmg = dmg;
+
 	}
 
 	public String getMonster() {
-		return Monster;
+		return name;
 	}
 
-	public void setMonster(String monster) {
-		Monster = monster;
-	}
-
-	public int getAttack() {
-		return attack;
-	}
-
-	public void setAttack(int attack) {
-		this.attack = attack;
+	public void setName(String Monster) {
+		name = Monster;
 	}
 
 	@Override
 	public String toString() {
-		return "Monster [hp=" + hp + ", dmg=" + dmg + ", Monster=" + Monster + ", attack=" + attack + ", attack()="
-				+ attack() + ", getHp()=" + getHp() + ", getDmg()=" + getDmg() + ", getMonster()=" + getMonster()
-				+ ", getAttack()=" + getAttack() + "]";
+		return "Monster [hp=" + hp + ", dmg=" + dmg + ", Monster=" + name  + ", attack()="
+				+ attack() + ", getHp()=" + getHp() + ", getDmg()=" + getDmg() + ", getName()=" + getName()
+				+ ", getAttack()=" + attack() + "]";
 	}
 	
 }
