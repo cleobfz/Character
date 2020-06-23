@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Character {
+	
 	private String name;
 	private int hp;
 	private int stat;
@@ -20,20 +21,33 @@ public class Character {
 		this.origin = origin;
 	}
 	
-	
-	public int attack(){
-		
-		int itemDmg = 0;
-		for(int i =0; i < inventory.size(); i++){
-			itemDmg += inventory.get(i).getStatbonus();
-		}
-		
-		int totalDmg = itemDmg + stat;
-		return totalDmg;
+	// returns int attack dmg 
+	public int attack(Skill skill){
+		int skilldmg = skill.getDmagevalue();
+		int itemdmg = getItemStatbonus();
+		int totaldmg = skilldmg + itemdmg + stat; 
+		System.out.println(totaldmg);
+		return totaldmg;
 		
 	}
+	// returns statbonus from itemlist
+	public int getItemStatbonus(){
+		int itemstatbonus = 0;
+		for(int i =0; i < inventory.size(); i++){
+			itemstatbonus += inventory.get(i).getStatbonus();
+		}
+		return itemstatbonus;
+	}
+	//returns hpbonus from itemlist
+	public int getItemHpbonus(){
+		int itemhpbonus =0;
+		for(int i =0; i < inventory.size(); i++){
+			itemhpbonus += inventory.get(i).getHpbonus();
+		}
+		return itemhpbonus;
+	}
 	
-	
+	//bunch of getters and setters
 	public String getName() {
 		return name;
 	}
@@ -74,9 +88,7 @@ public class Character {
 	}
 
 	public void setHp(int hp) {
-		if(hp < 30){
-			hp= 30;
-		}
+		
 		if(hp > 100){
 			hp = 100;
 		}
