@@ -19,13 +19,13 @@ import javax.swing.text.IconView;
 
 
 public class Dungeon extends JPanel{
-	static private int[][] dungeon3x3 = {{0, 1, 2},	{3, 4, 5},	{6, 7, 8}};
+	private int[][] dungeon3x3 = {{0, 1, 2},	{3, 4, 5},	{6, 7, 8}};
 	private int x;
 	private int y;
 	private int p;//position
-	static private int size = 198;
-	static private Character c;//character
-	private Icon ic = c.getOrigin().getIcon();
+	private int size = 198;
+	private Character c;//character
+	private Icon ic;
 	
 	public Dungeon(int position) {
 		this.x = 0;
@@ -133,44 +133,44 @@ public class Dungeon extends JPanel{
 
 	
   //TEST:
-//	public static void main(String[] args) {
-//		JFrame mf;
-//		mf = new JFrame();
-//		mf.setTitle("Dungeon");
-//		mf.setLocation(100,100);
-//		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
-//		BoxLayout mainLayout = new BoxLayout(mf.getContentPane(), BoxLayout.Y_AXIS);
-//		mf.setLayout(mainLayout);
-//
-////		Dungeon d = new Dungeon(4);
-////		mf.add(d);
-//		
-//		//Character füt Test
-//		ArrayList<Item> inv = new ArrayList<>();
-//		inv.add(new Item("Peng", 2,2));
-//		inv.add(new Item("Pow", 4,5));
-//		ArrayList<Skill> skills = new ArrayList<>();
-//		skills.add(new Skill("Pew pew", 5));
-//		
-//		
-//		c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
-//		Dungeon d2 = new Dungeon(c, 2);
-//		//int[] newPosition = d2.move(39);
-//		mf.add(d2);
-////		d2.setPosition(4);
-////		System.out.println(d2.getPosition());
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-////		d2.setPosition(3);
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-//		
-//		
-//		mf.pack();
-//		mf.setVisible(true);
-//		
-//	}//end of main
+	public static void main(String[] args) {
+		JFrame mf;
+		mf = new JFrame();
+		mf.setTitle("Dungeon");
+		mf.setLocation(100,100);
+		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		BoxLayout mainLayout = new BoxLayout(mf.getContentPane(), BoxLayout.Y_AXIS);
+		mf.setLayout(mainLayout);
+
+//		Dungeon d = new Dungeon(4);
+//		mf.add(d);
+		
+		//Character füt Test
+		ArrayList<Item> inv = new ArrayList<>();
+		inv.add(new Item("Peng", 2,2));
+		inv.add(new Item("Pow", 4,5));
+		ArrayList<Skill> skills = new ArrayList<>();
+		skills.add(new Skill("Pew pew", 5));
+		
+		
+		Character c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
+		Dungeon d2 = new Dungeon(c, 2);
+		//int[] newPosition = d2.move(39);
+		mf.add(d2);
+//		d2.setPosition(4);
+//		System.out.println(d2.getPosition());
+//		System.out.println(d2.getX());
+//		System.out.println(d2.getY());
+//		System.out.println(d2.getPosition());
+//		d2.setPosition(3);
+//		System.out.println(d2.getX());
+//		System.out.println(d2.getY());
+//		System.out.println(d2.getPosition());
+		
+		
+		mf.pack();
+		mf.setVisible(true);
+		
+	}//end of main
 }
