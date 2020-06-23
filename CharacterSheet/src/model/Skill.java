@@ -4,9 +4,9 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Skill {
-	String name;
-	int damagevalue;
 	
+	private String name;
+	private int damagevalue;
 	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\skill\\open-book.png");
 	
 	public Skill(String name, int damagevalue) {
