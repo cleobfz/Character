@@ -1,30 +1,27 @@
 package model;
 
-abstract class Monster {
+public class Monster {
 
 	private int hp;
 	private int dmg;
-	String name= new String();
-	private String attack;
-	abstract int attack();
+	private String name;
 
-	public String getAttack() {
-		return attack;
-	}
-
-	public void setAttack(String attack) {
-		this.attack = attack;
-	}
-
-	public Monster(int hp, int dmg, String name, String attack) {
+	public Monster(int hp, int dmg, String name) {
 		this.hp=hp;
 		this.dmg=dmg;
-		this.name=name;
-		this.attack=attack;
-		}
+		this.name=name;		
+	}
+	
+	public int attack(){
+		return dmg;
+	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public void setName(String Monster) {
+		name = Monster;
 	}
 
 	public int getHp() {
@@ -43,19 +40,9 @@ abstract class Monster {
 
 	}
 
-	public String getMonster() {
-		return name;
-	}
-
-	public void setName(String Monster) {
-		name = Monster;
-	}
-
 	@Override
 	public String toString() {
-		return "Monster [hp=" + hp + ", dmg=" + dmg + ", Monster=" + name  + ", attack()="
-				+ attack() + ", getHp()=" + getHp() + ", getDmg()=" + getDmg() + ", getName()=" + getName()
-				+ ", getAttack()=" + attack() + "]";
+		return "Monstername: " + name + ", Damage: " + dmg + ", Healthpoints=" + hp + " ";
 	}
 	
 }
