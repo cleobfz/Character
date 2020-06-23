@@ -3,6 +3,7 @@ package model;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -11,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Dungeon extends JPanel implements KeyListener{
+public class Dungeon extends JPanel{
 	static private int[][] dungeon3x3 = {{0, 1, 2},	{3, 4, 5},	{6, 7, 8}};
 	private int x;
 	private int y;
@@ -24,7 +25,12 @@ public class Dungeon extends JPanel implements KeyListener{
 		this.y = 0;
 		setPosition(position);
 		this.setPreferredSize(new Dimension(size, size));
-		addKeyListener(this);
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				move(e.getKeyCode());
+			}
+		});
 	}
 	
 	public Dungeon(String character, int position) {
@@ -41,7 +47,12 @@ public class Dungeon extends JPanel implements KeyListener{
 			}
 		}
 		this.setPreferredSize(new Dimension(size, size));
-		addKeyListener(this);
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				move(e.getKeyCode());
+			}
+		});
 	}
 	
 	public void addNotify() {//take over the keyboard focus
@@ -132,50 +143,38 @@ public class Dungeon extends JPanel implements KeyListener{
 	}
 
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		move(e.getKeyCode());
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
 	
 	//TEST:
-//	public static void main(String[] args) {
-//		JFrame mf;
-//		mf = new JFrame();
-//		mf.setTitle("Dungeon");
-//		mf.setLocation(100,100);
-//		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
-//		BoxLayout mainLayout = new BoxLayout(mf.getContentPane(), BoxLayout.Y_AXIS);
-//		mf.setLayout(mainLayout);
-//
-////		Dungeon d = new Dungeon(4);
-////		mf.add(d);
-//		
-//		Dungeon d2 = new Dungeon("Dungeon", 4);
-//		int[] newPosition = d2.move(39); 
-//		System.out.println("new x: " + newPosition[0] + ", new y: " + newPosition[1]);
-//		mf.add(d2);
-////		d2.setPosition(4);
-////		System.out.println(d2.getPosition());
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-////		d2.setPosition(3);
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-//		
-//		
-//		mf.pack();
-//		mf.setVisible(true);
-//		
-//	}
+	public static void main(String[] args) {
+		JFrame mf;
+		mf = new JFrame();
+		mf.setTitle("Dungeon");
+		mf.setLocation(100,100);
+		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		BoxLayout mainLayout = new BoxLayout(mf.getContentPane(), BoxLayout.Y_AXIS);
+		mf.setLayout(mainLayout);
+
+//		Dungeon d = new Dungeon(4);
+//		mf.add(d);
+		
+		Dungeon d2 = new Dungeon("Dungeon", 4);
+		int[] newPosition = d2.move(39); 
+		System.out.println("new x: " + newPosition[0] + ", new y: " + newPosition[1]);
+		mf.add(d2);
+//		d2.setPosition(4);
+//		System.out.println(d2.getPosition());
+//		System.out.println(d2.getX());
+//		System.out.println(d2.getY());
+//		System.out.println(d2.getPosition());
+//		d2.setPosition(3);
+//		System.out.println(d2.getX());
+//		System.out.println(d2.getY());
+//		System.out.println(d2.getPosition());
+		
+		
+		mf.pack();
+		mf.setVisible(true);
+		
+	}
 }
