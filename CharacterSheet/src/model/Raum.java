@@ -2,42 +2,40 @@ package model;
 
 
 public class Raum {
- Object Gegner;
- Object Schatz;
+ Monster Gegner;
+ Item Schatz;
+ boolean AUsgang;
  
  
-
-public Raum(Object gegner, Object schatz) {
+ 
+}
+public Raum(Monster gegner, Item schatz, boolean AUsgang) {
 	
-	Gegner = gegner;
 	
-	Schatz = schatz;
+	this.Gegner = gegner;
+	
+	this.Schatz = schatz;
 	
 }
 public Object getGegner() {
 	return Gegner;
 }
-public void setGegner(Object gegner) {
+public void setGegner(Monster gegner) {
 	Gegner = gegner;
 }
 public Object getSchatz() {
 	return Schatz;
 }
-public void setSchatz(Object schatz) {
+public void setSchatz(Item schatz) {
 	Schatz = schatz;
 	
-	 boolean AUsgang;
+	
 	 
-	if ( AUsgang = true) {
-		 System.out.println("it's Schatz");
-		 }
-		 else {
-		 System.out.println("it's Monster");
 		 }
 
 }
 
-}
+
 
 
 
