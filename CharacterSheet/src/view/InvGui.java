@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -9,12 +11,17 @@ import model.*;
 
 public class InvGui extends JFrame {
 	private MasterGui master;
-	private JList itemList;
-	private DefaultListModel listModel = new DefaultListModel();
 	private JPanel panelItem;
 	private JPanel panelBtn;
 	private String font = "Algerian";
 	private JTextArea txtAInfo;
+	private JTextField invCap;
+	private Item selectedItem;
+	private JButton selectedBtn = new JButton();
+	private JButton btnUse = new JButton("Use");
+	private ArrayList <Item> ial = new ArrayList<Item>();
+	
+	private JPanel panelPickItem = new JPanel(new GridLayout(4,5,1,1));
 	
 		
 	public InvGui(MasterGui master) {
@@ -28,13 +35,14 @@ public class InvGui extends JFrame {
 		panelBtn = new JPanel();
 		add(panelBtn, BorderLayout.SOUTH);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font(font, Font.PLAIN, 20));
-		btnBack.addActionListener(e -> close());
-		panelBtn.add(btnBack);
+		JButton btnClose = new JButton("close");
+		btnClose.setFont(new Font(font, Font.PLAIN, 20));
+		btnClose.addActionListener(e -> close());
+		panelBtn.add(btnClose);
 		
-		JButton btnUse = new JButton("Use");
 		btnUse.setFont(new Font(font, Font.PLAIN, 20));
+		btnUse.addActionListener(e -> useItem(panelPickItem, selectedBtn, ial));
+		btnUse.setEnabled(false);
 		panelBtn.add(btnUse);
 		
 		/*
@@ -46,7 +54,8 @@ public class InvGui extends JFrame {
 		txtAInfo.setEditable(false);
 		add(txtAInfo, BorderLayout.EAST);
 		panelItem.setLayout(new BorderLayout(0, 0));
-		add(panelItem, BorderLayout.WEST);		
+		add(panelItem, BorderLayout.WEST);	
+		
 		/**
 		 * Testing Items
 		 */
@@ -56,47 +65,96 @@ public class InvGui extends JFrame {
 		Item it4 = new Item("Bow", 5, 0);
 		Item it5 = new Item("Crap", 0, 0);
 		Item it6 = new Item("Destroyer of Worlds", 1000, 1000);
-		ArrayList <Item> ial = new ArrayList<Item>();
 		ial.add(it1);
 		ial.add(it2);
-		ial.add(it3);
 		ial.add(it4);
+		ial.add(it3);
 		ial.add(it5);
 		ial.add(it6);
 		
-		createBtnItemList(panelItem,ial);		
+		createBtnItemList(panelItem,ial);
 		
-		setLocationRelativeTo(null);
+		invCap = new JTextField();
+		invCap.setHorizontalAlignment(SwingConstants.CENTER);
+		invCap.setText(ial.size()+"/20 Items");
+		invCap.setFont(new Font(font, Font.PLAIN, 20));
+		
+		add(invCap, BorderLayout.NORTH);
+		
+		setLocationRelativeTo(master.frame);
 		setResizable(false);
 		pack();
 		setVisible(true);	
 	}
 	
+	private void useItem(JPanel panel, JButton btn, ArrayList <Item> ial) {
+		
+		panel.remove(btn);
+		btnUse.setEnabled(false);
+		System.out.println(selectedItem+" used");
+		
+		JButton newBtn = new JButton("empty");
+		panelPickItem.add(newBtn);
+		
+		int index = 0;
+		for (Item i : ial) {
+				if (selectedItem == i) {
+					System.out.println("equalIndex: "+index);	
+					continue;
+				}
+				index++;
+		}
+		ial.remove(index);
+		invCap.setText(this.ial.size()+"/20 Items");
+		panel.repaint();
+		panel.revalidate();
+	}
+
 	private void close() {
 		this.dispose();
 	}
 	
-	/*
-	 * BtnArray itemList
+	/**
+	 * @param panel - panel which got filled with buttons
+	 * @param ial 	- itemList for creating the buttons
 	 */
 	private void createBtnItemList(JPanel panel, ArrayList <Item> ial) {
-	JPanel panelPickItem = new JPanel(new GridLayout(1,5,1,1));
+	
 	for (Item i : ial) {
 		JButton btn = new JButton(i.getIcon());
     	panelPickItem.add(btn);
     	btn.setPreferredSize(new Dimension(64,64));
     	btn.setMaximumSize(new Dimension(64,64));
-    	btn.addActionListener(e -> itemInfo(i,txtAInfo));
-		
+    	btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				selectedBtn = btn;
+				itemInfo(i,txtAInfo);
+			}
+		});
 	}
 	System.out.println("Items: "+ial.size());
-    panel.add(panelPickItem, BorderLayout.WEST);
+	if (ial.size()<20) {
+		for (int i=ial.size();i<20;i++) {
+			JButton btn = new JButton("empty");
+			btn.addActionListener(e -> itemInfo(null, txtAInfo));
+			panelPickItem.add(btn);
+		}
+	}
+    panel.add(panelPickItem, BorderLayout.WEST);   
 	}
 	
     private void itemInfo(Item i, JTextArea txta) {
+    	this.selectedItem = i;
+    	if (i != null) {
+		btnUse.setEnabled(true);
     	txta.setText("Name: \t"+i.getName()
     				+"\nHP-Bonus: \t"+i.getHpbonus()
     				+"\nStat-Bonus: \t"+i.getStatbonus());
+	    }else {
+	    	txta.setText("no item");
+			btnUse.setEnabled(false);
+	    }
     }
-    
+	    
 }
