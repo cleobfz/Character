@@ -31,7 +31,7 @@ public Raum(Monster gegner, Item schatz, boolean ausgang) {
 	}
 	@Override
 	public String toString() {
-		return "Gegner: " + gegner + ", Schatz: " + schatz + ", Ausgang; " + ausgang + " ";
+		return "Gegner: " + gegner.getName() + ", Schatz: " + schatz.getName() + ", Ausgang; " + ausgang + " ";
 	}
 	
 }
