@@ -23,7 +23,7 @@ public class Controller {
 		//Origin origin
 		//Konstruktor für Origin?
 		ArrayList<Skill> skills = new ArrayList<>();
-		skills.add(new Skill("Pew pew", 5));
+		skills.add(new Skill("Normal Attack", 5));
 		skills.add(new Skill("Critical Strike", 10));
 		skills.add(new Skill("Headshot", 16));
 		skills.add(new Skill("Dirty Trick", 8));
