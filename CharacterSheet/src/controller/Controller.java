@@ -24,7 +24,7 @@ public class Controller {
 		ArrayList<Skill> skills = new ArrayList<>();
 		skills.add(new Skill("Pew pew", 5));
 		//Konstruktor für Skill?
-		controller.eins = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
+		controller.eins = new Character("Odlon Greybeard the terrible", 130, 9, inv, skills, new Origin("Dwarf","Krieger"));
 		System.out.println(controller.eins.attack(skills.get(0)));
 		
 		MasterGui gui = new MasterGui(controller);
