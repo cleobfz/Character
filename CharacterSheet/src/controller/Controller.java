@@ -14,6 +14,10 @@ public class Controller {
 		return eins;
 	}
 	
+	public Raum getRaum(int x, int y) {
+		return new Raum(new Monster(x, y, "Wandler"), new Item("Fuﬂ des Wandlers", x/2, y/2), false);
+	}
+	
 	public static void main(String[] args) {
 		Controller controller = new Controller();
 		ArrayList<Item> inv = new ArrayList<>();

@@ -55,6 +55,7 @@ public class BotGui extends JPanel {
 		
 		JButton btnAct_inv = new JButton();
 		btnAct_inv.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/act/act_inv.png")));
+		btnAct_inv.addActionListener(e -> master.openInventory());
 		movegui.add(btnAct_inv);
 		
 		JButton btnMove_e = new JButton();

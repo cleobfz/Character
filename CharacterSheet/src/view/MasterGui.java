@@ -39,4 +39,8 @@ public class MasterGui {
 		frame.setVisible(true);		
 	}
 	
+	protected void openInventory() {
+		new InvGui(this);
+	}
+	
 }
