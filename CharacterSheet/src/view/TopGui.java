@@ -38,7 +38,7 @@ public class TopGui extends JPanel {
 		charstat = new JPanel();
 		chargui.add(charstat, BorderLayout.SOUTH);
 		
-		//chargui.charstat.HP
+		//chargui.charstat.HP + HPbonus(Items)
 		txtFieldHP = new JTextField(10);
 		if(master.controller.getCharacter() == null){
 		txtFieldHP.setText("0"); 
@@ -54,7 +54,7 @@ public class TopGui extends JPanel {
 		txtFieldHP.setBackground(Color.RED);
 		charstat.add(txtFieldHP);
 		
-		//chargui.charstat.MP -> stat + Statbonus
+		//chargui.charstat.MP -> stat + Statbonus(items)
 		txtFieldMP = new JTextField(10);
 		if(master.controller.getCharacter() == null){
 			txtFieldMP.setText("0"); 

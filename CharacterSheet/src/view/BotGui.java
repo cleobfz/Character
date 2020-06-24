@@ -3,7 +3,9 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -62,23 +64,38 @@ public class BotGui extends JPanel {
 		
 		//actgui
 		actgui = new JPanel();
-		actgui.setLayout(new GridLayout());
+		actgui.setLayout(new GridLayout(1,4,2,2));
 		add(actgui,BorderLayout.CENTER);
 		
-		JButton btnAct_atk = new JButton();
-		btnAct_atk.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\resources\\skill\\open-book.png"));
-		actgui.add(btnAct_atk);
-		
-		JButton btnAct_def = new JButton();
-		btnAct_def.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/act/act_def.png")));
-		actgui.add(btnAct_def);
-		
-		JButton btnAct_esc = new JButton();
-		btnAct_esc.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/act/act_esc.png")));
-		actgui.add(btnAct_esc);
-		
-		
-
+		if(master.controller.getCharacter() == null){
+			JButton btnAct_atk = new JButton("Empty");
+			actgui.add(btnAct_atk);
+		} else {
+			//Add Skills
+			for (int i = 0; i < master.controller.getCharacter().getSkill().size(); i++){
+				JButton btnAct_atk = new JButton();
+				btnAct_atk.setLayout(new BorderLayout());
+			
+				//Skillname
+				JLabel TxtSkillname = new JLabel(master.controller.getCharacter().getSkill().get(i).getName());
+				TxtSkillname.setFont(new Font("Onyx", Font.BOLD, 30));
+				TxtSkillname.setBackground(btnAct_atk.getBackground());
+				TxtSkillname.setHorizontalAlignment(0);
+				btnAct_atk.add(TxtSkillname,BorderLayout.NORTH);
+				
+				//damageVaule
+				String damage = master.controller.getCharacter().attack(master.controller.getCharacter().getSkill().get(i)) +"";
+				JLabel TxtSkilldmg = new JLabel("DMG:" + damage);
+				TxtSkilldmg.setFont(new Font("Onyx", Font.BOLD, 30));
+				TxtSkilldmg.setHorizontalAlignment(0);
+				TxtSkilldmg.setVerticalAlignment(0);
+				btnAct_atk.add(TxtSkilldmg,BorderLayout.SOUTH);
+			
+				//SkillIcon
+				btnAct_atk.setIcon(master.controller.getCharacter().getSkill().get(i).getIcon());
+				actgui.add(btnAct_atk);
+			}	
+		}
 	}
 
 }
