@@ -147,7 +147,7 @@ public class Dungeon extends JPanel{
 	}
 	
 	public int[] move(int keyCode) {
-		int[] xyk = new int[2]; 
+		int[] xyKoordinaten = new int[2]; 
 		int kc = keyCode;
 		switch (kc) {
 		case (39): if ( this.getX() < 2) {this.x = this.getX() + 1; repaint();}; break;
@@ -158,12 +158,12 @@ public class Dungeon extends JPanel{
 		}
 		setPosition();
 		//Das ist der neue Raum, den wir betreten:	
-		xyk[0] = this.getX();
-		xyk[1] = this.getY();
-		System.out.print("neu x: " + xyk[0] + ", new y: " + xyk[1] + ", position: " + this.getPosition());
+		xyKoordinaten[0] = this.getX();
+		xyKoordinaten[1] = this.getY();
+		System.out.print("neu x: " + xyKoordinaten[0] + ", new y: " + xyKoordinaten[1] + ", position: " + this.getPosition() + "\n");
 		//con.enter(dungeon3x3[this.getX()][this.getY()]);
 		//System.out.print(" " + dungeon3x3[this.getX()][this.getY()] + "\n");
-		return xyk;		
+		return xyKoordinaten;		
 	}
 
 
