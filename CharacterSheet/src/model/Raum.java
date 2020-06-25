@@ -20,13 +20,13 @@ public Raum(Monster gegner, Item schatz, boolean AUsgang) {
 	this.Schatz = schatz;
 	
 }
-public Object getGegner() {
+public Monster getGegner() {
 	return Gegner;
 }
 public void setGegner(Monster gegner) {
 	Gegner = gegner;
 }
-public Object getSchatz() {
+public Item getSchatz() {
 	return Schatz;
 }
 public void setSchatz(Item schatz) {

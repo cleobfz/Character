@@ -3,7 +3,7 @@ package model;
 public class Erdmann extends Monster {
 
 	public Erdmann() {
-		super(3, 1, "Erdmann || Strategie: aus einer Krise als Gewinner hervorgehen", "KEHLENBISS");
+		super(3, 1, "Erdmann || Strategie: aus einer Krise als Gewinner hervorgehen");
 		}
 	
 

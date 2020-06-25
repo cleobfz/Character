@@ -21,7 +21,7 @@ public class Monster implements Serializable {
 		this.attack = attack;
 	}
 
-	public Monster(int hp, int dmg, String name, String attack) {
+	public Monster(int hp, int dmg, String name) {
 		this.hp=hp;
 		this.dmg=dmg;
 		this.name=name;
