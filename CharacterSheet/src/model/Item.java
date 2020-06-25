@@ -13,12 +13,13 @@ public class Item implements Serializable {
 	private String name;
 	private int statbonus;
 	private int hpbonus;
-	private Icon icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\ak47.png");
+	private Icon icon;
 	
 	public Item(String name, int statbonus, int hpbonus) {
 		this.hpbonus = hpbonus;
 		this.name = name;
 		this.statbonus = statbonus;
+		this.icon = new ImageIcon(System.getProperty("user.dir") + "\\resources\\items\\"+name+".png");
 	}
 	
 	public String getName() {

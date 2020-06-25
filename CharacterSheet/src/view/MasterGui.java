@@ -20,7 +20,7 @@ public class MasterGui {
 		centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
 		}
 		else{
-			centerGui.setIcon(controller.getCharacter().getOrigin().getIcon());
+			centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
 		}
 		centerGui.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -37,6 +37,10 @@ public class MasterGui {
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);		
+	}
+	
+	protected void openInventory() {
+		new InvGui(this);
 	}
 	
 }

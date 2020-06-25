@@ -25,36 +25,59 @@ public class TopGui extends JPanel {
 		//chargui.charIco	
 		//chargui.charIco
 		JLabel lblCharIco = new JLabel();
+		if(master.controller.getCharacter() == null){
 		lblCharIco.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/character/char_empty.png"))); //char werte implementieren !!
+		} else{lblCharIco.setIcon(master.controller.getCharacter().getOrigin().getIcon());
+			
+		}
 		chargui.add(lblCharIco,BorderLayout.CENTER);
+		
+		
 		
 		//chargui.charstat
 		charstat = new JPanel();
 		chargui.add(charstat, BorderLayout.SOUTH);
 		
-		//chargui.charstat.HP
+		//chargui.charstat.HP + HPbonus(Items)
 		txtFieldHP = new JTextField(10);
-		txtFieldHP.setText("200"); //char werte implementieren !!
+		if(master.controller.getCharacter() == null){
+		txtFieldHP.setText("0"); 
+		} else {
+			
+			txtFieldHP.setText(master.controller.getCharacter().getHp() + 
+					master.controller.getCharacter().getItemHpbonus() + "");
+		}
 		txtFieldHP.setHorizontalAlignment(SwingConstants.CENTER);
 		txtFieldHP.setForeground(Color.WHITE);
-		txtFieldHP.setFont(new Font("Old English Text MT", Font.BOLD, 20));
+		txtFieldHP.setFont(new Font("Old English Text MT", Font.BOLD, 15));
 		txtFieldHP.setEditable(false);
 		txtFieldHP.setBackground(Color.RED);
 		charstat.add(txtFieldHP);
 		
-		//chargui.charstat.MP
+		//chargui.charstat.MP -> stat + Statbonus(items)
 		txtFieldMP = new JTextField(10);
-		txtFieldMP.setText("100"); //char werte implementieren !!
+		if(master.controller.getCharacter() == null){
+			txtFieldMP.setText("0"); 
+			} else {
+				
+				txtFieldMP.setText(master.controller.getCharacter().getStat() + 
+						master.controller.getCharacter().getItemStatbonus()+ "");
+			}
 		txtFieldMP.setHorizontalAlignment(SwingConstants.CENTER);
 		txtFieldMP.setForeground(Color.WHITE);
-		txtFieldMP.setFont(new Font("Old English Text MT", Font.BOLD, 20));
+		txtFieldMP.setFont(new Font("Old English Text MT", Font.BOLD, 15));
 		txtFieldMP.setEditable(false);
 		txtFieldMP.setBackground(Color.BLUE);
 		charstat.add(txtFieldMP);
 		
 		//name
 		txtFieldName = new JTextField(30);
-		txtFieldName.setText("Der Hackfleisch Hassende Zerhacker"); //Name oder was anderes implementieren
+		if(master.controller.getCharacter() == null){
+		txtFieldName.setText("Noname");
+		} else {
+			txtFieldName.setText(master.controller.getCharacter().getName());
+		}
+		
 		txtFieldName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtFieldName.setEditable(false);
 		txtFieldName.setFont(new Font("Onyx", Font.BOLD, 50));

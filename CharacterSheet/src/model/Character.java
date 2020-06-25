@@ -26,7 +26,6 @@ public class Character {
 		int skilldmg = skill.getDmagevalue();
 		int itemdmg = getItemStatbonus();
 		int totaldmg = skilldmg + itemdmg + stat; 
-		System.out.println(totaldmg);
 		return totaldmg;
 		
 	}
