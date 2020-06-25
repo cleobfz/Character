@@ -64,10 +64,10 @@ public class TopGui extends JPanel {
 						master.controller.getCharacter().getItemStatbonus()+ "");
 			}
 		txtFieldMP.setHorizontalAlignment(SwingConstants.CENTER);
-		txtFieldMP.setForeground(Color.WHITE);
+		txtFieldMP.setForeground(Color.BLACK);
 		txtFieldMP.setFont(new Font("Old English Text MT", Font.BOLD, 15));
 		txtFieldMP.setEditable(false);
-		txtFieldMP.setBackground(Color.BLUE);
+		txtFieldMP.setBackground(Color.GREEN);
 		charstat.add(txtFieldMP);
 		
 		//name
