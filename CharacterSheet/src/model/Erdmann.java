@@ -24,7 +24,6 @@ public void dmg() {
 		System.out.println(("LIFEPOINTS: 3/10")+"\n");
 	}
 
-	@Override
 	int attack() {
 		
 		return 0;

@@ -1,14 +1,17 @@
 package model;
 
+import java.io.Serializable;
 
-public class Raum {
- Monster Gegner;
+public class Raum implements Serializable {
+
+	private static final long serialVersionUID = -8754566594733954539L;
+Monster Gegner;
  Item Schatz;
  boolean AUsgang;
  
  
  
-}
+
 public Raum(Monster gegner, Item schatz, boolean AUsgang) {
 	
 	

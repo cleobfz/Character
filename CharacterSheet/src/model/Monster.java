@@ -1,12 +1,17 @@
 package model;
 
-abstract class Monster {
+import java.io.Serializable;
 
+public class Monster implements Serializable {
+
+	private static final long serialVersionUID = 2474797148548216945L;
 	private int hp;
 	private int dmg;
 	String name= new String();
 	private String attack;
-	abstract int attack();
+	private int attack() {
+		return 0;
+	}
 
 	public String getAttack() {
 		return attack;
