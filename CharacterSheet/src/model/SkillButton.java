@@ -12,7 +12,6 @@ public class SkillButton extends JButton{
 	public SkillButton(Skill skill){
 		this.skill =skill;
 		
-	
 	}
 	
 	public Skill getSkill(){

@@ -34,6 +34,11 @@ public class MasterGui {
 		frame.add(new BotGui(this), BorderLayout.SOUTH);
 		frame.add(centerGui, BorderLayout.CENTER); //centergui
 		
+		//RoomPanel
+		ImagePanel Panel = new ImagePanel(
+		new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this);
+		frame.add(Panel, BorderLayout.EAST);
+		
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);		
