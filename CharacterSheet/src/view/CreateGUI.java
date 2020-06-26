@@ -8,7 +8,7 @@ import java.awt.event.*;
 import java.io.*;
 
 public class CreateGUI implements ActionListener {
-	private JFrame creator;
+	protected JFrame creator;
 	private JTextField monsterName;
 	private JTextField monsterHp;
 	private JTextField monsterDam;
@@ -17,30 +17,31 @@ public class CreateGUI implements ActionListener {
 	private JTextField itemStat;
 	private JCheckBox exit;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateGUI window = new CreateGUI();
-					window.creator.setVisible(true);
-					window.creator.setLocation(700, 300);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});		
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					CreateGUI window = new CreateGUI();
+//					window.creator.setVisible(true);
+//					window.creator.setLocation(700, 300);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});		
+//	}
 
 	public CreateGUI() throws IOException {
 		initialize();
 	}
 
 	private void initialize() throws IOException {
+		
 		creator = new JFrame();
 		creator.setTitle("Object Creator");
 		creator.getContentPane().setBackground(Color.LIGHT_GRAY);
 		creator.setBounds(100, 100, 550, 370);
-		creator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		creator.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		creator.getContentPane().setLayout(null);
 		creator.setResizable(false);
 		
@@ -286,7 +287,7 @@ public class CreateGUI implements ActionListener {
 	}
 	
 	// write Methoden, um die Einträge durchzuführen
-	BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\grego\\Desktop\\test.txt", true));
+	BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\test.txt", true));
 
 	public void writeItem() throws IOException {
 		bw.write("Item Name: "+ itemName.getText());
@@ -384,7 +385,7 @@ public class CreateGUI implements ActionListener {
 	}
 	
 	protected void writeCreation () {
-		File testFile = new File("C:\\Users\\grego\\Desktop\\room00.room");
+		File testFile = new File("C:\\Users\\User\\Desktop\\test.txt");
 		Monster monster = null;
 		Item item = null; 
 		

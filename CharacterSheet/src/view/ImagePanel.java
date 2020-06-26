@@ -42,21 +42,31 @@ JTextField gegnername, itemname;
 		// ItemLabel
 		JLabel itemlabel = new JLabel();
 		itemlabel.setOpaque(false);
+		if(master.controller.getRaum().getSchatz() != null){
 		itemlabel.setIcon(master.controller.getRaum().getSchatz().getIcon());
 		String itemtext = master.controller.getRaum().getSchatz().getName() + ": HP ("
 				+ master.controller.getRaum().getSchatz().getHpbonus() + ") DMG ("
 				+ master.controller.getRaum().getSchatz().getStatbonus() + ")";
 		itemlabel.setText(itemtext);
+		} else {
+			itemlabel.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\resources\\items\\open-chest.png"));
+			itemlabel.setText("No Treasures");
+		}
 		add(itemlabel);
 
 		// Monsterlabel
 		JLabel monsterlabel = new JLabel();
 		monsterlabel.setOpaque(false);
+		if(master.controller.getRaum().getGegner() != null){
 		monsterlabel.setIcon(master.controller.getRaum().getGegner().getIcon());
 		String gegnertext = master.controller.getRaum().getGegner().getName() + ": HP ("
 				+ master.controller.getRaum().getGegner().getHp() + ") DMG ("
 				+ master.controller.getRaum().getGegner().getDmg() + ")";
 		monsterlabel.setText(gegnertext);
+		} else {
+			monsterlabel.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\resources\\items\\tentacle.png"));
+			monsterlabel.setText("No Monsters");
+		}
 		add(monsterlabel);
 
 		// Exitlabel
