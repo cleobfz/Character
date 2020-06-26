@@ -12,7 +12,7 @@ public class Controller {
 	Character eins;
 	Item selectedItem;
 	Raum aktuellerRaum = new Raum(null,null,true);
-
+	MasterGui master;
 	
 	
 	public Character getCharacter() {

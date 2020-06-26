@@ -56,6 +56,8 @@ public class MasterGui {
 		frame.pack();
 		frame.setVisible(true);		
 	}
+	
+	
 	//TODO repain roompanel
 	public void repaintRoom(){
 		frame.remove(roomPanel);
@@ -64,6 +66,8 @@ public class MasterGui {
 		frame.repaint();
 		frame.pack();
 	}
+	
+	
 	
 	//open Inventory
 	protected void openInventory() {
