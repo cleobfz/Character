@@ -1,11 +1,15 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Item {
+public class Item implements Serializable {
+
+	private static final long serialVersionUID = 3726183022289982996L;
 	private String name;
 	private int statbonus;
 	private int hpbonus;

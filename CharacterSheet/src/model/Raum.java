@@ -1,39 +1,41 @@
 package model;
 
+import java.io.Serializable;
 
-public class Raum {
- private Monster gegner;
- private Item schatz;
- private boolean ausgang;
+public class Raum implements Serializable {
+
+	private static final long serialVersionUID = -8754566594733954539L;
+Monster Gegner;
+ Item Schatz;
+ boolean AUsgang;
  
-public Raum(Monster gegner, Item schatz, boolean ausgang) {
+ 
+ 
+
+public Raum(Monster gegner, Item schatz, boolean AUsgang) {
 	
-	this.gegner = gegner;
-	this.schatz = schatz;
-	this.ausgang = ausgang;
 	
-	}
-	public Monster getGegner() {
-		return gegner;
-	}
-	public void setGegner(Monster gegner) {
-		this.gegner = gegner;
-	}
-	public Item getSchatz() {
-		return schatz;
-	}
+	this.Gegner = gegner;
 	
-	public boolean getAusgang(){
-		return ausgang;
-	}
-	public void setSchatz(Item schatz) {
-		this.schatz = schatz;	
-	}
-	@Override
-	public String toString() {
-		return "Gegner: " + gegner.getName() + ", Schatz: " + schatz.getName() + ", Ausgang; " + ausgang + " ";
-	}
+	this.Schatz = schatz;
 	
+}
+public Monster getGegner() {
+	return Gegner;
+}
+public void setGegner(Monster gegner) {
+	Gegner = gegner;
+}
+public Item getSchatz() {
+	return Schatz;
+}
+public void setSchatz(Item schatz) {
+	Schatz = schatz;
+	
+	
+	 
+		 }
+
 }
 
 

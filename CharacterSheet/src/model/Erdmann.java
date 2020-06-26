@@ -24,14 +24,13 @@ public void dmg() {
 		System.out.println(("LIFEPOINTS: 3/10")+"\n");
 	}
 
-//	@Override
-//	int attack() {
-//		
-//		return 0;
-//	}
-//		public static void main(String[] args) {
-//		Monster erdmann = new Erdmann();
-//		
-//	}
+	int attack() {
+		
+		return 0;
+	}
+		public static void main(String[] args) {
+		Monster erdmann = new Erdmann();
+		
+	}
 	
 }
