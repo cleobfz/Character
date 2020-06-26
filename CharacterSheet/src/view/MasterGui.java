@@ -10,6 +10,7 @@ import controller.Controller;
 import model.Dungeon;
 
 public class MasterGui {
+	ImagePanel roomPanel;
 	protected Controller controller;
 	protected JFrame frame;
 
@@ -54,6 +55,14 @@ public class MasterGui {
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);		
+	}
+	//TODO repain roompanel
+	public void repaintRoom(){
+		frame.remove(roomPanel);
+		frame.add (new WestPanel(
+				new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this));
+		frame.repaint();
+		frame.pack();
 	}
 	
 	//open Inventory

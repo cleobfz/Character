@@ -13,7 +13,7 @@ Monster Gegner;
  
 
 public Raum(Monster gegner, Item schatz, boolean Ausgang) {
-	
+	this.Ausgang = Ausgang;
 	this.Gegner = gegner;
 	this.Schatz = schatz;	
 	}
@@ -33,6 +33,13 @@ public void setSchatz(Item schatz) {
 public boolean getAusgang(){
 	return Ausgang;
 }
+
+@Override
+public String toString() {
+	return "\n Gegner=" + Gegner + "\n Schatz: " + Schatz + "\n Ausgang: " + Ausgang + "";
+}
+
+
 
 }
 

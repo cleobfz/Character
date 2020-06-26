@@ -57,7 +57,7 @@ public class Item implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Itemname: "+ name + ",Statbonus: " + statbonus + ",HPbonus: " + hpbonus + " ";
+		return " "+ name + " ,Statbonus: " + statbonus + " ,HPbonus: " + hpbonus + " ";
 	}
 	
 }

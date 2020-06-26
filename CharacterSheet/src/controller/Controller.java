@@ -11,7 +11,8 @@ import view.MasterGui;
 public class Controller {
 	Character eins;
 	Item selectedItem;
-	Raum aktuellerRaum = new Raum(new Monster(10, 10, "Spider"), new Item("Sword", 5, 5), false);
+	Raum aktuellerRaum = new Raum(null,null,true);
+
 	
 	
 	public Character getCharacter() {
@@ -20,12 +21,17 @@ public class Controller {
 	
 	public Raum getRaum(int x, int y) {
 		aktuellerRaum =new Raum(new Monster(x, y, "Wandler"), new Item("Fuß des Wandlers", x/2, y/2), false);
-		return aktuellerRaum;
-		
+		return aktuellerRaum;	
 	}
 	
 	public Raum getRaum(){
 		return aktuellerRaum;	
+	}
+	
+	
+	public void setRaum(Raum raum){
+		aktuellerRaum =raum;
+		System.out.println("AKTUELLER RAUM:       " +aktuellerRaum);
 	}
 	
 	public void enter(Raum raum){
@@ -103,11 +109,21 @@ public class Controller {
 		Monster orc = new Monster(5,5,"Orc");
 		Monster spider = new Monster (3,2,"Spider");
 		Monster dragon = new Monster (200,200,"Dragon");
-		//
+		Monster ghost = new Monster (7,6,"Ghost");
+		Monster zombie = new Monster (4,5,"Zombie");
+		//Raum Dungeon
+		
 		Raum raum1 = new Raum(goblin, it6, true);
 		Raum raum2 = new Raum(dragon,it5,false);
-		Raum raum3 = new Raum(null,null,false);
-	
+		Raum raum3 = new Raum(spider,it2,false);
+		Raum raum4 = new Raum(orc,null,false);
+		Raum raum5 = new Raum(ghost,it3,false);
+		Raum raum6 = new Raum(zombie,null,false);
+		Raum raum7 = new Raum(goblin,null,false);
+		Raum raum8 = new Raum(null,null,false);
+		Raum raum9 = new Raum(goblin,it3,false);
+		
+
 		
 		//Konstruktor für Skill?
 		controller.eins = new Character("Odlon Greybeard the terrible", 10, 9, inv, skills, new Origin("Dwarf","Krieger"));

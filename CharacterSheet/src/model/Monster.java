@@ -60,7 +60,7 @@ public class Monster implements Serializable {
 
 	@Override
 	public String toString() {
-		return " Monster= " + name  + "HP: "+ getHp() +"DMG " + getDmg();
+		return " " + name  + " , HP: "+ getHp() +", DMG: " + getDmg();
 	}
 	
 }
