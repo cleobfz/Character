@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 import controller.Controller;
+import model.Dungeon;
 
 public class MasterGui {
 	protected Controller controller;
@@ -16,15 +17,15 @@ public class MasterGui {
 		
 		this.controller = controller;
 		
-		JLabel centerGui = new JLabel();
-		//centergui muss noch implementiert werden hier steht nur ein Platzhalter
-		if(controller.getCharacter() == null){
-		centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
-		}
-		else{
-			centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
-		}
-		centerGui.setHorizontalAlignment(SwingConstants.CENTER);
+//		JLabel centerGui = new JLabel();
+//		//centergui muss noch implementiert werden hier steht nur ein Platzhalter
+//		if(controller.getCharacter() == null){
+//		centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
+//		}
+//		else{
+//			centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
+//		}
+//		centerGui.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		frame = new JFrame();
 		frame.setTitle("MonsterSpalter2020");
@@ -35,7 +36,10 @@ public class MasterGui {
 		
 		frame.add(new TopGui(this), BorderLayout.NORTH);
 		frame.add(new BotGui(this), BorderLayout.SOUTH);
-		frame.add(centerGui, BorderLayout.CENTER); //centergui
+		
+		
+		//CenterPanel
+		frame.add(new Dungeon(controller), BorderLayout.CENTER); //centergui
 		
 		//RoomPanel(East)
 		ImagePanel roomPanel = new ImagePanel(
