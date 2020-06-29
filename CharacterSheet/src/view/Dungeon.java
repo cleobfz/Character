@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,6 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.Controller;
+import model.Character;
+import model.Item;
+import model.Monster;
+import model.Raum;
 
 
 public class Dungeon extends JPanel{

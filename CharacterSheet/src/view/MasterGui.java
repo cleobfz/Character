@@ -7,7 +7,6 @@ import java.io.IOException;
 import javax.swing.*;
 
 import controller.Controller;
-import model.Dungeon;
 
 public class MasterGui {
 	protected ImagePanel roomPanel;
