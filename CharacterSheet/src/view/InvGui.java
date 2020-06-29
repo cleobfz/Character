@@ -19,10 +19,10 @@ public class InvGui extends JFrame {
 	private Item selectedItem;
 	private JButton selectedBtn = new JButton();
 	private JButton btnUse = new JButton("Use");
-	private ArrayList <Item> ial = new ArrayList<Item>();
+	
+	private ArrayList <Item> ial;
 	
 	private JPanel panelPickItem = new JPanel(new GridLayout(4,5,1,1));
-	
 		
 	public InvGui(MasterGui master) {
 		this.master = master;
@@ -56,21 +56,9 @@ public class InvGui extends JFrame {
 		panelItem.setLayout(new BorderLayout(0, 0));
 		add(panelItem, BorderLayout.WEST);	
 		
-		/**
-		 * Testing Items
-		 */
-		Item it1 = new Item("Potion",0, 10);
-		Item it2 = new Item("Sword", 10, 0);
-		Item it3 = new Item("Armor", 5, 50);
-		Item it4 = new Item("Bow", 5, 0);
-		Item it5 = new Item("Crap", 0, 0);
-		Item it6 = new Item("Destroyer of Worlds", 1000, 1000);
-		ial.add(it1);
-		ial.add(it2);
-		ial.add(it4);
-		ial.add(it3);
-		ial.add(it5);
-		ial.add(it6);
+		//fill arraylist
+		
+		ial = master.controller.getCharacter().getInventory();
 		
 		createBtnItemList(panelItem,ial);
 		
@@ -99,13 +87,17 @@ public class InvGui extends JFrame {
 		int index = 0;
 		for (Item i : ial) {
 				if (selectedItem == i) {
-					System.out.println("equalIndex: "+index);	
+					System.out.println("equalIndex: "+index);
+					master.controller.selectItem(i);
 					continue;
 				}
 				index++;
 		}
 		ial.remove(index);
 		invCap.setText(this.ial.size()+"/20 Items");
+		
+		
+		
 		panel.repaint();
 		panel.revalidate();
 	}
