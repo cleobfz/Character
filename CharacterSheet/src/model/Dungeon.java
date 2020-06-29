@@ -44,8 +44,8 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		private ArrayList<Integer> raumeRandearYs = new ArrayList<>();
 	
 	private Timer tm = new Timer(5, this);
-	private int heroX = 0, heroVelX = 0;
-	private int heroY = 0, heroVelY = 0;
+	private int heroX = 0, heroVelX_toR = 0, heroVelX_toL = 0;
+	private int heroY = 0, heroVelY_up = 0, heroVelY_down = 0;
 	private int heroSize = 30;
 
 	public Dungeon(Controller c) {
@@ -64,7 +64,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 				raeume.get(i).add(new JLabel(" Raum " + (i+1) + "," + dungeon3x3[xIndex][yIndex].getGegner().getName()));
 				raeume.get(i).getComponent(1).setForeground(new Color(149, 149, 149));
 				//System.out.println(Raeume.get(i-1).getComponent(0).getForeground());
-				raeume.get(i).setBackground(new Color(32,32,32,32));
+				raeume.get(i).setBackground(new Color(0,0,0,0));
 				this.add(raeume.get(i));				
 				i++;
 			}
@@ -77,7 +77,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 //				move(e.getKeyCode());
 //			}
 //		});
-//	
+		
 		tm.start();
 		addKeyListener(this);
 		//setFocusable(true);
@@ -144,27 +144,35 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (heroX < 0) {
+		if (heroX < 1) {
+			heroVelX_toL = 0;
 			heroX = 0;
 			//heroVelX = 0;
 		}
-		if (heroX > (width - heroSize)) {
+		if (heroX > (width - heroSize) - 1) {
 			heroX = width - heroSize;
-			//heroVelX = 0;
+			heroVelX_toR = 0;
 		}
 		//gettin' in from the left side
-//		if ( (heroX > raeume.get(0).getComponent(0).getX() - heroSize && heroX < raeume.get(0).getComponent(0).getX() ||
-//				heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize) && heroX < raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() ||
-//				heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX())
-//				&& heroY < raeume.get(0).getComponent(0).getY() + raeume.get(0).getComponent(0).getHeight()) {
-//			heroVelX = 0;
-//			heroX--;
-//		}
-		if (heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize + raeume.get(1).getComponent(0).getWidth())
-				&& heroY < raeume.get(1).getComponent(0).getY() + raeume.get(1).getComponent(0).getHeight()) {
-			heroVelX = 0;
-			//heroX++;
+		if ((heroX > raeume.get(0).getComponent(0).getX() - heroSize && heroX < raeume.get(0).getComponent(0).getX() ||
+				heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize) && heroX < raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() ||
+				heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX())
+				&& heroY < raeume.get(0).getComponent(0).getY() + raeume.get(0).getComponent(0).getHeight()) {
+			heroVelX_toR = 0;
+			//heroX--;
 		}
+		if ((heroX > raeume.get(0).getComponent(0).getX() && heroX < raeume.get(0).getComponent(0).getX() + raeume.get(0).getComponent(0).getWidth() ||
+				heroX > (  raeume.get(1).getX() + raeume.get(1).getComponent(0).getX()   ) && heroX < raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() + raeume.get(1).getComponent(0).getWidth() ||
+				heroX >	(  raeume.get(2).getX() + raeume.get(2).getComponent(0).getX()   ) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() + raeume.get(2).getComponent(0).getWidth()))  {
+			System.out.println();
+			heroVelX_toL = 0;
+			//heroX--;
+		}
+//		if (heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize + raeume.get(1).getComponent(0).getWidth())
+//				&& heroY < raeume.get(1).getComponent(0).getY() + raeume.get(1).getComponent(0).getHeight()) {
+//			heroVelX_toR = 0;
+//			
+//		}
 //		if (heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX()
 //			&& heroY < raeume.get(2).getComponent(0).getY() + raeume.get(2).getComponent(0).getHeight()) {
 //			heroVelX = 0;
@@ -176,44 +184,46 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		
 		
 		
-		if (heroY < 0) {
+		if (heroY < 1) {
 			heroY = 0;
-			//heroVelY = 0;
+			heroVelY_up = 0;
 		}
-		if (heroY > (height - heroSize)) {
+		if (heroY > (height - heroSize) - 1) {
 			heroY = height - heroSize;
-			//heroVelY = 0;
+			heroVelY_down = 0;
 		}
 		
-		heroX = heroX + heroVelX;
-		heroY = heroY + heroVelY;
+		heroX = heroX + heroVelX_toR + heroVelX_toL;
+		heroY = heroY + heroVelY_down + heroVelY_up;
 		repaint();
 	}
 	
 	public void keyPressed(KeyEvent e) {
 		int c = e.getKeyCode();
 		if (c == KeyEvent.VK_LEFT) {
-			heroVelX = -2;
-			heroVelY = 0;
+			heroVelX_toR = 0;
+			heroVelX_toL = -2;
 		}
 		if (c == KeyEvent.VK_RIGHT) {
-			heroVelX = 2;
-			heroVelY = 0;
+			heroVelX_toR = 2;
+			heroVelX_toL = 0;
 		}
 		if (c == KeyEvent.VK_UP) {
-			heroVelX = 0;
-			heroVelY = -2;
+			heroVelY_up = -2;
+			heroVelY_down = 0;
 		}
 		if (c == KeyEvent.VK_DOWN) {
-			heroVelX = 0;
-			heroVelY = 2;
+			heroVelY_up = 0;
+			heroVelY_down = 2;
 		}
 	}
 	
 	public void keyTyped(KeyEvent e) {}
 	public void keyReleased(KeyEvent e) {
-		heroVelX = 0;
-		heroVelY = 0;
+		heroVelX_toR = 0;
+		heroVelX_toL = 0;
+		heroVelY_up = 0;
+		heroVelY_down = 0;
 	}
 	
 	
@@ -297,63 +307,63 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 
 	
   //TEST:
-//	public static void main(String[] args) {
-//		JFrame mf;
-//		mf = new JFrame();
-//		mf.setTitle("Dungeon");
-//		mf.setLocation(1000,100);
-//		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//		BorderLayout mainLayout = new BorderLayout();
-//		mf.getContentPane().setLayout(mainLayout);
-//		
-//		
-//		JPanel west = new JPanel();
-//		JLabel westLabel = new JLabel("west");
-//		west.add(westLabel);
-//		mf.add(west, BorderLayout.WEST);
-//		west.setBackground(Color.MAGENTA);
-//		
-//		JPanel east = new JPanel();
-//		JLabel eastLabel = new JLabel("east");
-//		east.add(eastLabel);
-//		mf.add(east, BorderLayout.EAST);
-//		east.setBackground(Color.ORANGE);
-//		
-//		
-//		//Character für Test
-////		ArrayList<Item> inv = new ArrayList<>();
-////		inv.add(new Item("Peng", 2,2));
-////		inv.add(new Item("Pow", 4,5));
-////		ArrayList<Skill> skills = new ArrayList<>();
-////		skills.add(new Skill("Pew pew", 5));
-////		Character c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
-//		Dungeon d3 = new Dungeon(new Controller());
-//		Raum newRaum = new Controller().getRaum(2, 2);
-//		//System.out.println(newRaum);
-//		d3.set_position(newRaum, 2);
-//		//JPanel helper = new JPanel();
-//		//helper.add(d3);
-//		//helper.setBackground(Color.blue);
-//		mf.add(d3, BorderLayout.CENTER);
-//		
-//		
-//		
-//		
-//		//Dungeon d2 = new Dungeon(c, 2);
-//		//int[] newPosition = d2.move(39);
-////		mf.add(d2);
-////		d2.setPosition(4);
-////		System.out.println(d2.getPosition());
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-////		d2.setPosition(3);
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-//				
-//		mf.pack();
-//		mf.setVisible(true);
-//	}//end of main
+	public static void main(String[] args) {
+		JFrame mf;
+		mf = new JFrame();
+		mf.setTitle("Dungeon");
+		mf.setLocation(1000,100);
+		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		BorderLayout mainLayout = new BorderLayout();
+		mf.getContentPane().setLayout(mainLayout);
+		
+		
+		JPanel west = new JPanel();
+		JLabel westLabel = new JLabel("west");
+		west.add(westLabel);
+		mf.add(west, BorderLayout.WEST);
+		west.setBackground(Color.MAGENTA);
+		
+		JPanel east = new JPanel();
+		JLabel eastLabel = new JLabel("east");
+		east.add(eastLabel);
+		mf.add(east, BorderLayout.EAST);
+		east.setBackground(Color.ORANGE);
+		
+		
+		//Character für Test
+//		ArrayList<Item> inv = new ArrayList<>();
+//		inv.add(new Item("Peng", 2,2));
+//		inv.add(new Item("Pow", 4,5));
+//		ArrayList<Skill> skills = new ArrayList<>();
+//		skills.add(new Skill("Pew pew", 5));
+//		Character c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
+		Dungeon d3 = new Dungeon(new Controller());
+		Raum newRaum = new Controller().getRaum(2, 2);
+		//System.out.println(newRaum);
+		d3.set_position(newRaum, 2);
+		//JPanel helper = new JPanel();
+		//helper.add(d3);
+		//helper.setBackground(Color.blue);
+		mf.add(d3, BorderLayout.CENTER);
+		
+		
+		
+		
+		//Dungeon d2 = new Dungeon(c, 2);
+		//int[] newPosition = d2.move(39);
+//		mf.add(d2);
+//		d2.setPosition(4);
+//		System.out.println(d2.getPosition());
+//		System.out.println(d2.getX());
+//		System.out.println(d2.getY());
+//		System.out.println(d2.getPosition());
+//		d2.setPosition(3);
+//		System.out.println(d2.getX());
+//		System.out.println(d2.getY());
+//		System.out.println(d2.getPosition());
+				
+		mf.pack();
+		mf.setVisible(true);
+	}//end of main
 }
