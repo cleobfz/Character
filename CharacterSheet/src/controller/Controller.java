@@ -31,6 +31,7 @@ public class Controller {
 	
 	public void setRaum(Raum raum){
 		aktuellerRaum =raum;
+		master.repaintRoom();
 		System.out.println("AKTUELLER RAUM:       " +aktuellerRaum);
 	}
 	
@@ -53,6 +54,8 @@ public class Controller {
 			eins.getInventory().add(raum.getSchatz());
 			System.out.println("Added to Inventory: " + raum.getSchatz().getName());
 			raum.setSchatz(null);
+			master.repaintBot();
+			master.repaintTop();
 		} else{
 			System.out.println("No Treasure -.-");
 		}
@@ -133,6 +136,7 @@ public class Controller {
 //		controller.enter(raum2);
 		
 		MasterGui gui = new MasterGui(controller);
+		controller.master =gui;
 	}
 
 }
