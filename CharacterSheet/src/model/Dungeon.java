@@ -77,7 +77,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 //				move(e.getKeyCode());
 //			}
 //		});
-		
+//	
 		tm.start();
 		addKeyListener(this);
 		//setFocusable(true);
