@@ -64,7 +64,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 				raeume.get(i).add(new JLabel(" Raum " + (i+1) + "," + dungeon3x3[xIndex][yIndex].getGegner().getName()));
 				raeume.get(i).getComponent(1).setForeground(new Color(149, 149, 149));
 				//System.out.println(Raeume.get(i-1).getComponent(0).getForeground());
-				raeume.get(i).setBackground(new Color(0,0,0,0));
+				raeume.get(i).setBackground(new Color(32,32,32,32));
 				this.add(raeume.get(i));				
 				i++;
 			}
@@ -297,63 +297,63 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 
 	
   //TEST:
-	public static void main(String[] args) {
-		JFrame mf;
-		mf = new JFrame();
-		mf.setTitle("Dungeon");
-		mf.setLocation(1000,100);
-		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		BorderLayout mainLayout = new BorderLayout();
-		mf.getContentPane().setLayout(mainLayout);
-		
-		
-		JPanel west = new JPanel();
-		JLabel westLabel = new JLabel("west");
-		west.add(westLabel);
-		mf.add(west, BorderLayout.WEST);
-		west.setBackground(Color.MAGENTA);
-		
-		JPanel east = new JPanel();
-		JLabel eastLabel = new JLabel("east");
-		east.add(eastLabel);
-		mf.add(east, BorderLayout.EAST);
-		east.setBackground(Color.ORANGE);
-		
-		
-		//Character für Test
-//		ArrayList<Item> inv = new ArrayList<>();
-//		inv.add(new Item("Peng", 2,2));
-//		inv.add(new Item("Pow", 4,5));
-//		ArrayList<Skill> skills = new ArrayList<>();
-//		skills.add(new Skill("Pew pew", 5));
-//		Character c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
-		Dungeon d3 = new Dungeon(new Controller());
-		Raum newRaum = new Controller().getRaum(2, 2);
-		//System.out.println(newRaum);
-		d3.set_position(newRaum, 2);
-		//JPanel helper = new JPanel();
-		//helper.add(d3);
-		//helper.setBackground(Color.blue);
-		mf.add(d3, BorderLayout.CENTER);
-		
-		
-		
-		
-		//Dungeon d2 = new Dungeon(c, 2);
-		//int[] newPosition = d2.move(39);
-//		mf.add(d2);
-//		d2.setPosition(4);
-//		System.out.println(d2.getPosition());
-//		System.out.println(d2.getX());
-//		System.out.println(d2.getY());
-//		System.out.println(d2.getPosition());
-//		d2.setPosition(3);
-//		System.out.println(d2.getX());
-//		System.out.println(d2.getY());
-//		System.out.println(d2.getPosition());
-				
-		mf.pack();
-		mf.setVisible(true);
-	}//end of main
+//	public static void main(String[] args) {
+//		JFrame mf;
+//		mf = new JFrame();
+//		mf.setTitle("Dungeon");
+//		mf.setLocation(1000,100);
+//		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//		BorderLayout mainLayout = new BorderLayout();
+//		mf.getContentPane().setLayout(mainLayout);
+//		
+//		
+//		JPanel west = new JPanel();
+//		JLabel westLabel = new JLabel("west");
+//		west.add(westLabel);
+//		mf.add(west, BorderLayout.WEST);
+//		west.setBackground(Color.MAGENTA);
+//		
+//		JPanel east = new JPanel();
+//		JLabel eastLabel = new JLabel("east");
+//		east.add(eastLabel);
+//		mf.add(east, BorderLayout.EAST);
+//		east.setBackground(Color.ORANGE);
+//		
+//		
+//		//Character für Test
+////		ArrayList<Item> inv = new ArrayList<>();
+////		inv.add(new Item("Peng", 2,2));
+////		inv.add(new Item("Pow", 4,5));
+////		ArrayList<Skill> skills = new ArrayList<>();
+////		skills.add(new Skill("Pew pew", 5));
+////		Character c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
+//		Dungeon d3 = new Dungeon(new Controller());
+//		Raum newRaum = new Controller().getRaum(2, 2);
+//		//System.out.println(newRaum);
+//		d3.set_position(newRaum, 2);
+//		//JPanel helper = new JPanel();
+//		//helper.add(d3);
+//		//helper.setBackground(Color.blue);
+//		mf.add(d3, BorderLayout.CENTER);
+//		
+//		
+//		
+//		
+//		//Dungeon d2 = new Dungeon(c, 2);
+//		//int[] newPosition = d2.move(39);
+////		mf.add(d2);
+////		d2.setPosition(4);
+////		System.out.println(d2.getPosition());
+////		System.out.println(d2.getX());
+////		System.out.println(d2.getY());
+////		System.out.println(d2.getPosition());
+////		d2.setPosition(3);
+////		System.out.println(d2.getX());
+////		System.out.println(d2.getY());
+////		System.out.println(d2.getPosition());
+//				
+//		mf.pack();
+//		mf.setVisible(true);
+//	}//end of main
 }
