@@ -287,7 +287,7 @@ public class CreateGUI implements ActionListener {
 	}
 	
 	// write Methoden, um die Einträge durchzuführen
-	BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\test.txt", true));
+	BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\cs\\Desktop\\test.room", true));
 
 	public void writeItem() throws IOException {
 		bw.write("Item Name: "+ itemName.getText());
@@ -385,7 +385,7 @@ public class CreateGUI implements ActionListener {
 	}
 	
 	protected void writeCreation () {
-		File testFile = new File("C:\\Users\\User\\Desktop\\test.txt");
+		File testFile = new File(System.getProperty("user.dir")+"\\resources\\room\\00.room");
 		Monster monster = null;
 		Item item = null; 
 		
