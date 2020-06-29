@@ -30,7 +30,7 @@ public class Dungeon extends JPanel{
 	private int height = (int) (width * 0.75);
 	private Dimension d = new Dimension(width, height);
 	private Character c;//character
-	private Icon ic = new ImageIcon(System.getProperty("user.dir")+("/resources/character/erdmann.jpg"));
+	private Icon ic = new ImageIcon(System.getProperty("user.dir")+("/resources/character/player.png"));
 	private ImageIcon icon = (ImageIcon) ic;
 	private ImageIcon icon2 = new ImageIcon(icon.getImage().getScaledInstance(width/3, height/3, Image.SCALE_SMOOTH));
 	private Controller con;
