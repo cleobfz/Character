@@ -47,7 +47,7 @@ public class Dungeon extends JPanel{
 		dungeon3x3[1][2] = new Raum(new Monster(7, 11, "zombie"), null,false);
 		dungeon3x3[2][0] = new Raum(new Monster(9, 4, "orc"), new Item("sword", 7, 7),false);
 		dungeon3x3[2][1] = new Raum(new Monster(3, 2, "goblin"), new Item("crap", 2, 1),false);
-		dungeon3x3[2][2] = new Raum(new Monster(150, 150, "dragon"), new Item("crap", 0, 0),true);
+		dungeon3x3[2][2] = new Raum(new Monster(150, 150, "dragon"), new Item("destroyer of Worlds", 100, 100),true);
 		
 		
 		
