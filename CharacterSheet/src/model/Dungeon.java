@@ -28,7 +28,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 	private int _x;
 	private int _y;
 	private int _p;//position
-	private int width = 900;
+	private int width = 800;
 	private int height = (int) (width * 0.75);
 	private Dimension d = new Dimension(width, height);
 	private Character c;//character
@@ -56,12 +56,12 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		for (int yIndex = 0; yIndex < dungeon3x3.length; yIndex++) {
 			for (int xIndex = 0; xIndex < dungeon3x3.length; xIndex++) {
 				dungeon3x3[xIndex][yIndex] = con.getRaum(xIndex, yIndex);
-				dungeon3x3[xIndex][yIndex].getGegner().setName("Monster im Raum " + (i+1));
+				dungeon3x3[xIndex][yIndex].getGegner().setName("Monster " + (i+1));
 				raeume.add(new JPanel());
 				raeume.get(i).add(new JLabel(doorScaled));
 				Dimension rDim = new Dimension(width/3 - 5, height/3 - 5);
 				raeume.get(i).setPreferredSize(rDim);
-				raeume.get(i).add(new JLabel("<html>Raum " + (i+1) + "<br>" + dungeon3x3[xIndex][yIndex].getGegner().getName() + "</html"));
+				raeume.get(i).add(new JLabel(" Raum " + (i+1) + "," + dungeon3x3[xIndex][yIndex].getGegner().getName()));
 				raeume.get(i).getComponent(1).setForeground(new Color(149, 149, 149));
 				//System.out.println(Raeume.get(i-1).getComponent(0).getForeground());
 				raeume.get(i).setBackground(new Color(0,0,0,0));
@@ -124,28 +124,22 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 	
 	//moving square
 	protected void paintComponent(Graphics g) {
-		int i = 0;
-		while (raumeRandearXs.size() < 10) {
-			raumeRandearXs.add(raeume.get(i).getX() + raeume.get(i).getComponent(0).getX());
-			raumeRandearXs.add(raeume.get(i).getX() + raeume.get(i).getComponent(0).getX() + raeume.get(i).getComponent(0).getWidth());
-			System.out.println(raumeRandearXs);
-			raumeRandearYs.add(raeume.get(i).getY() + raeume.get(i).getComponent(0).getY());
-			raumeRandearYs.add(raeume.get(i).getY() + raeume.get(i).getComponent(0).getY() + raeume.get(i).getComponent(0).getHeight());
-			//System.out.println(raumeRandearYs);
-			i++;
-		}
-//		while (raumeRandearYs.size() < 5) {
+//		int i = 0;
+//		while (raumeRandearXs.size() < 10) {
+//			raumeRandearXs.add(raeume.get(i).getX() + raeume.get(i).getComponent(0).getX());
 //			raumeRandearXs.add(raeume.get(i).getX() + raeume.get(i).getComponent(0).getX() + raeume.get(i).getComponent(0).getWidth());
+//			//System.out.println(raumeRandearXs);
+//			raumeRandearYs.add(raeume.get(i).getY() + raeume.get(i).getComponent(0).getY());
+//			raumeRandearYs.add(raeume.get(i).getY() + raeume.get(i).getComponent(0).getY() + raeume.get(i).getComponent(0).getHeight());
+//			//System.out.println(raumeRandearYs);
 //			i++;
-//			System.out.println(raumeRandearXs);
-//		}
-		
+//		}		
 		
 		super.paintComponent(g);
 		super.paintComponent(g);
 		g.setColor(Color.MAGENTA);
 		g.fillRect(heroX, heroY, heroSize, heroSize);
-		//System.out.println(heroY);
+		//System.out.println(heroX);
 		//System.out.println(Raeume.get(8).getX());
 	}
 	
@@ -158,14 +152,29 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 			heroX = width - heroSize;
 			//heroVelX = 0;
 		}
-		if (heroX > raeume.get(0).getComponent(0).getX() - heroSize && heroX < raeume.get(0).getComponent(0).getX()
-			&& heroY < raeume.get(0).getComponent(0).getY() + raeume.get(0).getComponent(0).getHeight()) {
-			//heroX = Raeume.get(0).getComponent(0).getX() - heroSize;
+		//gettin' in from the left side
+//		if ( (heroX > raeume.get(0).getComponent(0).getX() - heroSize && heroX < raeume.get(0).getComponent(0).getX() ||
+//				heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize) && heroX < raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() ||
+//				heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX())
+//				&& heroY < raeume.get(0).getComponent(0).getY() + raeume.get(0).getComponent(0).getHeight()) {
+//			heroVelX = 0;
+//			heroX--;
+//		}
+		if (heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize + raeume.get(1).getComponent(0).getWidth())
+				&& heroY < raeume.get(1).getComponent(0).getY() + raeume.get(1).getComponent(0).getHeight()) {
 			heroVelX = 0;
-			//heroY = Raeume.get(0).getComponent(0).getY() + heroY;
-			//heroVelY = 0;
-			heroX--;
+			//heroX++;
 		}
+//		if (heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX()
+//			&& heroY < raeume.get(2).getComponent(0).getY() + raeume.get(2).getComponent(0).getHeight()) {
+//			heroVelX = 0;
+//			heroX--;
+//		}
+		//System.out.println(raeume.get(1).getX() + raeume.get(1).getComponent(1).getX());
+		
+		
+		
+		
 		
 		if (heroY < 0) {
 			heroY = 0;
@@ -251,7 +260,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 					//System.out.println(raeume.get(0).remove(0););
 					//System.out.println(raeume.get(i).getComponentAt(85, 5).setText("asd"));
 					raeume.get(i).remove(1);
-					JLabel temp = new JLabel("<html>Raum " + (i+1) + "<br>" + dungeon3x3[xIndex][yIndex].getGegner().getName() + "</html>");
+					JLabel temp = new JLabel("Raum " + (i+1) + "," + dungeon3x3[xIndex][yIndex].getGegner().getName());
 					temp.setForeground(new Color(149, 149, 149));
 					raeume.get(i).add(temp);
 				}
@@ -322,7 +331,7 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		Dungeon d3 = new Dungeon(new Controller());
 		Raum newRaum = new Controller().getRaum(2, 2);
 		//System.out.println(newRaum);
-		d3.set_position(newRaum, 1);
+		d3.set_position(newRaum, 2);
 		//JPanel helper = new JPanel();
 		//helper.add(d3);
 		//helper.setBackground(Color.blue);
