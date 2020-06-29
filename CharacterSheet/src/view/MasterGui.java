@@ -44,7 +44,7 @@ public class MasterGui {
 		frame.add(new Dungeon(controller), BorderLayout.CENTER); //centergui
 		
 		//RoomPanel(East)
-		ImagePanel roomPanel = new ImagePanel(
+		roomPanel = new ImagePanel(
 		new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this);
 		frame.add(roomPanel, BorderLayout.EAST);
 		

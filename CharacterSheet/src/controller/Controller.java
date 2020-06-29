@@ -32,6 +32,7 @@ public class Controller {
 	public void setRaum(Raum raum){
 		aktuellerRaum =raum;
 		System.out.println("AKTUELLER RAUM:       " +aktuellerRaum);
+		master.repaintRoom();
 	}
 	
 	public void enter(Raum raum){
@@ -133,6 +134,7 @@ public class Controller {
 //		controller.enter(raum2);
 		
 		MasterGui gui = new MasterGui(controller);
+		controller.master = gui;
 	}
 
 }
