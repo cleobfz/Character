@@ -7,10 +7,10 @@ import java.io.IOException;
 import javax.swing.*;
 
 import controller.Controller;
-import model.Dungeon;
 
 public class MasterGui {
 	protected ImagePanel roomPanel;
+	protected JPanel  topPanel, botPanel;
 	protected Controller controller;
 	protected JFrame frame;
 	
@@ -35,9 +35,12 @@ public class MasterGui {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		
+		//TopPanel
+		topPanel = new TopGui(this);
+		frame.add(topPanel, BorderLayout.NORTH);
 		
-		frame.add(new TopGui(this), BorderLayout.NORTH);
-		frame.add(new BotGui(this), BorderLayout.SOUTH);
+		botPanel = new  BotGui(this);
+		frame.add(botPanel, BorderLayout.SOUTH);
 		
 		
 		//CenterPanel
@@ -68,6 +71,23 @@ public class MasterGui {
 		frame.repaint();
 		frame.pack();
 	}
+	
+	public void repaintTop(){
+		frame.remove(topPanel);
+		topPanel = new TopGui(this);
+		frame.add(topPanel,BorderLayout.NORTH);
+		frame.repaint();
+		frame.pack();
+	}
+	
+	public void repaintBot(){
+		frame.remove(botPanel);
+		botPanel = new BotGui(this);
+		frame.add(botPanel, BorderLayout.SOUTH);
+		frame.repaint();
+		frame.pack();
+	}
+	
 	
 	public Controller getcontroller(){
 		return controller;

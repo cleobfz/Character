@@ -20,6 +20,7 @@ public class BotGui extends JPanel {
 	protected MasterGui master;
 	protected JPanel movegui;
 	protected JPanel actgui;
+	protected Dungeon dungeon;
 	int i;
 	protected BotGui(MasterGui master) {
 		
@@ -42,6 +43,7 @@ public class BotGui extends JPanel {
 		JButton btnMove_n = new JButton();
 		btnMove_n.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/move/move_n.png")));
 		movegui.add(btnMove_n);
+		
 		
 		JButton btnMove_ne = new JButton();
 		btnMove_ne.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall.png")));
