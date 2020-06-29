@@ -389,16 +389,26 @@ public class CreateGUI implements ActionListener {
 		Monster monster = null;
 		Item item = null; 
 		
+		
+		
+	
+		
+		
+		
 		try {	
 			monster = new Monster(Integer.parseInt(monsterHp.getText()),		
-						Integer.parseInt(monsterDam.getText()), monsterName.getText());		
+						Integer.parseInt(monsterDam.getText()), monsterName.getText());	
+			monster.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\resources\\items\\tentacle.png"));
+			
 		}catch(NumberFormatException nfe) {
 			JOptionPane.showMessageDialog(null, "So nicht, mein Monster!!");
 			nfe.printStackTrace();
+			
 		}
 		try {
 			item = new Item(itemName.getText(), Integer.parseInt(itemStat.getText()), 
-					Integer.parseInt(itemHp.getText()));	
+					Integer.parseInt(itemHp.getText()));
+			item.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\resources\\items\\crap.png"));
 			}
 		
 		catch(NumberFormatException nfe) {

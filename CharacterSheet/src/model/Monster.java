@@ -57,6 +57,10 @@ public class Monster implements Serializable {
 	public Icon getIcon(){
 		return icon;
 	}
+	
+	public void setIcon(Icon icon){
+		this.icon = icon;
+	}
 
 	@Override
 	public String toString() {
