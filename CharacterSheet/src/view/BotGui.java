@@ -117,8 +117,6 @@ public class BotGui extends JPanel {
 						System.out.println(master.controller.getCharacter().attack(currentButton.getSkill()));	
 				    }	
 				});	
-				
-	
 			}
 		}
 		

@@ -53,7 +53,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Itemname: "+ name + ",Statbonus: " + statbonus + ",HPbonus: " + hpbonus + " ";
+		return " "+ name + " ,Statbonus: " + statbonus + " ,HPbonus: " + hpbonus + " ";
 	}
 	
 }

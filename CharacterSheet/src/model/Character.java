@@ -2,17 +2,21 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.Controller;
+
 public class Character {
 	
+	Controller controller;
 	private String name;
 	private int hp;
 	private int stat;
 	private ArrayList<Item> inventory = new ArrayList<>();
 	private ArrayList<Skill> skill = new ArrayList<>();
 	private Origin origin;
+
+	
 	
 	public Character(String name, int stat,int hp, ArrayList<Item> inventory, ArrayList<Skill> skill, Origin origin) {
-		
 		this.name = name;
 		this.stat = stat;
 		this.hp = hp;
@@ -26,16 +30,19 @@ public class Character {
 		int skilldmg = skill.getDmagevalue();
 		int itemdmg = getItemStatbonus();
 		int totaldmg = skilldmg + itemdmg + stat; 
+		
 		return totaldmg;
 		
 	}
 	// returns statbonus from itemlist
 	public int getItemStatbonus(){
+		
 		int itemstatbonus = 0;
 		for(int i =0; i < inventory.size(); i++){
 			itemstatbonus += inventory.get(i).getStatbonus();
 		}
 		return itemstatbonus;
+		
 	}
 	//returns hpbonus from itemlist
 	public int getItemHpbonus(){
@@ -45,6 +52,14 @@ public class Character {
 		}
 		return itemhpbonus;
 	}
+	
+//	public int selectedItem(){
+//		Item selectetItem = controller.getselectedItem();
+//		System.out.println("es hat den dmgwert " + selectetItem.getStatbonus());
+//		return 0;
+//	}
+	
+	
 	
 	//bunch of getters and setters
 	public String getName() {
