@@ -287,7 +287,7 @@ public class CreateGUI implements ActionListener {
 	}
 	
 	// write Methoden, um die Einträge durchzuführen
-	BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\cs\\Desktop\\test.room", true));
+	BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\test.room", true));
 
 	public void writeItem() throws IOException {
 		bw.write("Item Name: "+ itemName.getText());
