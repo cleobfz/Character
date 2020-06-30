@@ -50,7 +50,6 @@ public class Dungeon extends JPanel{
 		dungeon3x3[2][2] = new Raum(new Monster(150, 150, "dragon"), new Item("destroyer of Worlds", 100, 100),true);
 		
 		
-		
 		con = c;
 		int i = 1;
 		setBackground(Color.PINK);

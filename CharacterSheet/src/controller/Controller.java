@@ -80,7 +80,7 @@ public void fight(Raum raum){
 		/*
 		 * Loot
 		 */
-		if(room.getSchatz() != null){
+		if(room.getSchatz() != null && room.getGegner() == null) {
 			eins.getInventory().add(room.getSchatz());
 			System.out.println("Added to Inventory: " + room.getSchatz().getName());
 			room.setSchatz(null);
@@ -88,11 +88,13 @@ public void fight(Raum raum){
 			master.repaintTop();
 		} else{
 			System.out.println("No Treasure -.-");
+			master.repaintBot();
+			master.repaintTop();
 		}
 		/*
 		 * Exit
 		 */
-		if(room.getAusgang() && room.getGegner()== null){
+		if(room.getAusgang() && room.getGegner() == null){
 			JOptionPane.showMessageDialog(null, "Congratulations, you won this incredibly difficult game ");
 		} else{
 			System.out.println("No exit");

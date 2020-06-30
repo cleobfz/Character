@@ -37,8 +37,10 @@ public class fightGui extends JPanel{
 		add(fightBtn,BorderLayout.WEST);
 		fightBtn.addActionListener(e -> master.controller.fight(room));
 		
-		JButton evadeBtn = new JButton("Evade");
-		add(evadeBtn,BorderLayout.EAST);
+		JButton fleeBtn = new JButton("flee");
+		
+		add(fleeBtn,BorderLayout.EAST);
+		fleeBtn.addActionListener(e -> master.endEncounter());
 		
 	}
 	
