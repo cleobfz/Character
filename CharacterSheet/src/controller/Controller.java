@@ -70,19 +70,41 @@ public class Controller {
 //			}
 //			System.out.println(raum.getGegner().getName() +" defeated");
 //			raum.setGegner(null);
+=======
+	public void enter(Raum room){
+		if(room.getGegner() != null){
+			int dialogBtn = JOptionPane.YES_NO_OPTION;
+			JOptionPane.showConfirmDialog(null, "Engage on "+room.getGegner()+"?", "Enemy ahead!", dialogBtn);
+			if(dialogBtn == JOptionPane.YES_OPTION) {
+				master.startFight(room);				
+			}else if (dialogBtn == JOptionPane.NO_OPTION){
+				
+			}
+				
+				
+			System.out.println("Encountering a " + room.getGegner().getName() + " with " +room.getGegner().getHp() + " Healthpoins");
+			int life =room.getGegner().getHp();
+			while(room.getGegner().getHp() > 0){
+			 life = life - eins.attack(eins.getSkill().get(0));
+			 room.getGegner().setHp(life);
+			System.out.println("Attack successful on " + room.getGegner().getName()+ "  " + room.getGegner().getHp() + " HP remain");
+			}
+			System.out.println(room.getGegner().getName() +" defeated");
+			room.setGegner(null);
+>>>>>>> Encounter-System
 		} else {
 			System.out.println("No enemy :)");
 		}
-		if(raum.getSchatz() != null){
-			eins.getInventory().add(raum.getSchatz());
-			System.out.println("Added to Inventory: " + raum.getSchatz().getName());
-			raum.setSchatz(null);
+		if(room.getSchatz() != null){
+			eins.getInventory().add(room.getSchatz());
+			System.out.println("Added to Inventory: " + room.getSchatz().getName());
+			room.setSchatz(null);
 			master.repaintBot();
 			master.repaintTop();
 		} else{
 			System.out.println("No Treasure -.-");
 		}
-		if(raum.getAusgang()){
+		if(room.getAusgang()){
 			JOptionPane.showMessageDialog(null, "Congratulations, you won this incredibly difficult game ");
 		} else{
 			System.out.println("No exit");
