@@ -12,31 +12,20 @@ import model.Raum;
 
 public class MasterGui {
 	protected ImagePanel roomPanel;
-	protected JPanel  topPanel, botPanel;
+	protected JPanel  topPanel, botPanel, fightGui;
 	protected Controller controller;
 	protected JFrame frame;
-	protected JPanel dungeonPanel;
-	protected Dungeon dungeon;
+	protected JPanel dungeonPanel;	
 
 	public MasterGui(Controller controller) {
-		this.controller = controller;
-		dungeon = new Dungeon(controller);
 		
-//		JLabel centerGui = new JLabel();
-//		//centergui muss noch implementiert werden hier steht nur ein Platzhalter
-//		if(controller.getCharacter() == null){
-//		centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
-//		}
-//		else{
-//			centerGui.setIcon(new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/sc_empty.png")));
-//		}
-//		centerGui.setHorizontalAlignment(SwingConstants.CENTER);
+		this.controller = controller;
 		
 		frame = new JFrame();
 		frame.setTitle("MonsterSpalter2020");
 		frame.setLocation(300,0);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new BorderLayout());		
+		frame.setLayout(new BorderLayout());
 		
 		//TopPanel
 		topPanel = new TopGui(this);
@@ -44,6 +33,7 @@ public class MasterGui {
 		
 		botPanel = new  BotGui(this);
 		frame.add(botPanel, BorderLayout.SOUTH);
+		
 		
 		//CenterPanel
 		dungeonPanel = new Dungeon(controller);
@@ -64,39 +54,17 @@ public class MasterGui {
 		frame.setVisible(true);		
 	}
 	
-	public void repaintRoom(){
-		frame.remove(roomPanel);
-		roomPanel = new ImagePanel(
-		new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this); 
-		frame.add (roomPanel, BorderLayout.EAST);
-		frame.repaint();
-		frame.pack();
-	}
-	
-	public void repaintTop(){
-		frame.remove(topPanel);
-		topPanel = new TopGui(this);
-		frame.add(topPanel,BorderLayout.NORTH);
-		frame.repaint();
-		frame.pack();
-	}
-	
-	public void repaintBot(){
-		frame.remove(botPanel);
-		botPanel = new BotGui(this);
-		frame.add(botPanel, BorderLayout.SOUTH);
-		frame.repaint();
-		frame.pack();
-	}
-	
 	public Controller getcontroller(){
 		return controller;
 	}
 	
+	
+	//open Inventory
 	protected void openInventory() {
 		new InvGui(this);
 	}
 	
+	//TODO addCreateGUI
 	protected void createRoom(){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -112,11 +80,42 @@ public class MasterGui {
 	}
 
 	public void startFight(Raum room) {
-		JPanel fightGui = new fightGui(this, room);
+		fightGui = new fightGui(this, room);
 		frame.remove(dungeonPanel);
-		frame.add(fightGui, BorderLayout.CENTER);
-		
-		
+		frame.add(fightGui, BorderLayout.CENTER);	
 	}
+	//end Encounter on last Location
+	public void endEncounter(){
+		frame.remove(fightGui);
+		frame.add(dungeonPanel,BorderLayout.CENTER);
+		frame.repaint();
+		frame.pack();	
+	}
+	//repain roompanel
+	public void repaintRoom(){
+		frame.remove(roomPanel);
+		roomPanel = new ImagePanel(
+					new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this); 
+		frame.add (roomPanel, BorderLayout.EAST);
+		frame.repaint();
+		frame.pack();
+	}
+		//repaint TopPanel
+	public void repaintTop(){
+		frame.remove(topPanel);
+		topPanel = new TopGui(this);
+		frame.add(topPanel,BorderLayout.NORTH);
+		frame.repaint();
+		frame.pack();
+	}
+		//repaint BottomPanel
+	public void repaintBot(){
+		frame.remove(botPanel);
+		botPanel = new BotGui(this);
+		frame.add(botPanel, BorderLayout.SOUTH);
+		frame.repaint();
+		frame.pack();
+	}
+	
 	
 }
