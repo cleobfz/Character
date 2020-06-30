@@ -35,6 +35,34 @@ public class Controller {
 		master.repaintRoom();
 	}
 	
+	
+public void fight(Raum raum){
+		
+		//Attack enemy
+		if(raum.getGegner().getHp()> 0){
+		
+		int gegnerlife =raum.getGegner().getHp();
+		gegnerlife = gegnerlife - eins.attack(eins.getSkill().get(0));
+		raum.getGegner().setHp(gegnerlife);
+		master.repaintRoom();
+		System.out.println("Monsterlife" + gegnerlife);
+		
+		//player gets damage randomly (50%)
+		//TODO add statbonus
+		int random = (int)((Math.random()*10)+1);
+		if(random < 5){
+		eins.setHp(eins.getHp() - raum.getGegner().getDmg());
+		System.out.println("Monster greift an :" +raum.getGegner().getDmg());
+		master.repaintTop();
+		}
+		} else {
+			raum.setGegner(null);
+			System.out.println("Monster tot");
+			master.endEncounter();
+		}
+	}
+	
+	
 	public void enter(Raum room){
 		/**
 		 * Enemy
