@@ -42,7 +42,6 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 	private Controller con;
 		private ArrayList<Integer> raumeRandearXs = new ArrayList<>();
 		private ArrayList<Integer> raumeRandearYs = new ArrayList<>();
-	
 	private Timer tm = new Timer(5, this);
 	private int heroX = 0, heroVelX_toR = 0, heroVelX_toL = 0;
 	private int heroY = 0, heroVelY_up = 0, heroVelY_down = 0;
@@ -70,6 +69,11 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 			}
 		}
 		this.setPreferredSize(d);
+		//System.out.println(raeume.get(1).getX());
+		//System.out.println(raeume.get(1).getComponent(0).getX());
+		//System.out.println(raeume.get(1).getComponent(0).getY());
+		//System.out.println(raeume.get(1).getComponent(1).getX());
+		//System.out.println(raeume.get(1).getComponent(1).getY());
 		
 //		addKeyListener(new KeyAdapter() {
 //			@Override
@@ -83,8 +87,6 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		//setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 	}
-	
-	
 	
 //	public Dungeon(Character character, int position) {
 //		this.c = character;
@@ -114,14 +116,6 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		requestFocus();
 	}
 		
-//	protected void paintComponent(Graphics g) {
-//		super.paintComponent(g);
-//		int x = this._x * (width/3);
-//		int y = this._y * (height/3);
-//		//g.clearRect(0, 0, width, height);
-//		icon2.paintIcon(this, g, x, y);
-//	}
-	
 	//moving square
 	protected void paintComponent(Graphics g) {
 //		int i = 0;
@@ -133,57 +127,90 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 //			raumeRandearYs.add(raeume.get(i).getY() + raeume.get(i).getComponent(0).getY() + raeume.get(i).getComponent(0).getHeight());
 //			//System.out.println(raumeRandearYs);
 //			i++;
-//		}		
-		
-		super.paintComponent(g);
+//		}	
 		super.paintComponent(g);
 		g.setColor(Color.MAGENTA);
 		g.fillRect(heroX, heroY, heroSize, heroSize);
-		//System.out.println(heroX);
-		//System.out.println(Raeume.get(8).getX());
 	}
-	
+	//die Bewegung: (to do - move by single pixel!
 	public void actionPerformed(ActionEvent e) {
 		if (heroX < 1) {
 			heroVelX_toL = 0;
 			heroX = 0;
-			//heroVelX = 0;
 		}
 		if (heroX > (width - heroSize) - 1) {
 			heroX = width - heroSize;
 			heroVelX_toR = 0;
 		}
-		//gettin' in from the left side
-		if ((heroX > raeume.get(0).getComponent(0).getX() - heroSize && heroX < raeume.get(0).getComponent(0).getX() ||
-				heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize) && heroX < raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() ||
-				heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX())
-				&& heroY < raeume.get(0).getComponent(0).getY() + raeume.get(0).getComponent(0).getHeight()) {
+		//walls
+		int _1l = raeume.get(0).getComponent(0).getX();
+		int _2l = raeume.get(1).getX() + raeume.get(1).getComponent(0).getX();
+		int _3l = raeume.get(2).getX() + raeume.get(2).getComponent(0).getX();
+		int roomWidth = raeume.get(0).getComponent(0).getWidth();
+		int roomHeight = raeume.get(0).getComponent(0).getY() + raeume.get(0).getComponent(0).getHeight();
+		//st row
+		if ((heroX > _1l - heroSize && heroX < _1l || heroX > (_2l - heroSize) && heroX < _2l ||
+				heroX > (_3l - heroSize) && heroX < _3l) && heroY < roomHeight) {
 			heroVelX_toR = 0;
 			//heroX--;
 		}
-		if ((heroX > raeume.get(0).getComponent(0).getX() && heroX < raeume.get(0).getComponent(0).getX() + raeume.get(0).getComponent(0).getWidth() ||
-				heroX > (  raeume.get(1).getX() + raeume.get(1).getComponent(0).getX()   ) && heroX < raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() + raeume.get(1).getComponent(0).getWidth() ||
-				heroX >	(  raeume.get(2).getX() + raeume.get(2).getComponent(0).getX()   ) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() + raeume.get(2).getComponent(0).getWidth()))  {
-			System.out.println();
+		if ((heroX > _1l && heroX < _1l + roomWidth || heroX > (_2l) && heroX < _2l + roomWidth ||
+				heroX >	(_3l) && heroX < _3l + roomWidth) && heroY < roomHeight) {
 			heroVelX_toL = 0;
-			//heroX--;
+			heroVelX_toR = 0;
+			if (heroX == _1l + roomWidth - 1) {heroX += 2;}
+			if (heroX == _2l + roomWidth - 1) {heroX += 2;}
+			if (heroX == _3l + roomWidth - 2) {heroX += 2;}
 		}
-//		if (heroX > (raeume.get(1).getX() + raeume.get(1).getComponent(0).getX() - heroSize + raeume.get(1).getComponent(0).getWidth())
-//				&& heroY < raeume.get(1).getComponent(0).getY() + raeume.get(1).getComponent(0).getHeight()) {
-//			heroVelX_toR = 0;
-//			
-//		}
-//		if (heroX > (raeume.get(2).getX() + raeume.get(2).getComponent(0).getX() - heroSize) && heroX < raeume.get(2).getX() + raeume.get(2).getComponent(0).getX()
-//			&& heroY < raeume.get(2).getComponent(0).getY() + raeume.get(2).getComponent(0).getHeight()) {
-//			heroVelX = 0;
-//			heroX--;
-//		}
-		//System.out.println(raeume.get(1).getX() + raeume.get(1).getComponent(1).getX());
-		
-		
-		
-		
-		
+		//nd row
+		if ((heroX > _1l - heroSize && heroX < _1l ||heroX > (_2l - heroSize) && heroX < _2l ||
+				heroX > (_3l - heroSize) && heroX < _3l) && heroY > raeume.get(0).getHeight() - heroSize
+				&& heroY < raeume.get(0).getHeight() + roomHeight) {
+			heroVelX_toR = 0;
+		}
+		if ((heroX > _1l && heroX < _1l + roomWidth || heroX > (_2l) && heroX < _2l + roomWidth ||
+				heroX >	(_3l) && heroX < _3l + roomWidth) && heroY > raeume.get(0).getHeight() - heroSize
+				&& heroY < raeume.get(0).getHeight() + roomHeight) {
+			heroVelX_toL = 0;
+			heroVelX_toR = 0;
+			if (heroX == _1l + roomWidth - 1) {heroX += 2;}
+			if (heroX == _2l + roomWidth - 1) {heroX += 2;}
+			if (heroX == _3l + roomWidth - 2) {heroX += 2;}
+		}
+		//walking in through the roof
+		if ((heroX + heroSize > _1l && heroX < _1l + roomWidth || heroX + heroSize > _2l && heroX < _2l + roomWidth ||
+				heroX + heroSize > _3l && heroX < _3l + roomWidth) && (heroY == raeume.get(0).getHeight() - heroSize)) {
+			heroVelY_down = 0;
+		}
+		//walking out through the roof
+		if ((heroX + heroSize > _1l && heroX < _1l + roomWidth || heroX + heroSize > _2l && heroX < _2l + roomWidth ||
+				heroX + heroSize > _3l && heroX < _3l + roomWidth) && (heroY == raeume.get(0).getHeight())) {
+			heroVelY_up = 0;
+		}
+		//last row
+		if ((heroX > _1l - heroSize && heroX < _1l ||	heroX > (_2l - heroSize) && heroX < _2l ||
+				heroX > (_3l - heroSize) && heroX < _3l) && heroY > raeume.get(0).getHeight() + raeume.get(3).getHeight() - heroSize
+				&& heroY < raeume.get(0).getHeight() + raeume.get(3).getHeight() + roomHeight) {
+			heroVelX_toR = 0;
+		}
+		if ((heroX > _1l && heroX < _1l + roomWidth || heroX > (_2l) && heroX < _2l + roomWidth ||
+				heroX >	(_3l) && heroX < _3l + roomWidth) && heroY > raeume.get(0).getHeight() + raeume.get(3).getHeight() - heroSize
+				&& heroY < raeume.get(0).getHeight() + raeume.get(3).getHeight() + roomHeight) {
+			heroVelX_toL = 0;
+			heroVelX_toR = 0;
+			if (heroX == _1l + roomWidth - 1) {heroX += 2;}
+			if (heroX == _2l + roomWidth - 1) {heroX += 2;}
+			if (heroX == _3l + roomWidth - 2) {heroX += 2;}
+		}
+		//walking in through the 'roof'
+		if ((heroX + heroSize > _1l && heroX < _1l + roomWidth || heroX + heroSize > _2l && heroX < _2l + roomWidth ||
+				heroX + heroSize > _3l && heroX < _3l + roomWidth) && (heroY == raeume.get(0).getHeight() + raeume.get(0).getHeight() - heroSize)) {
+			heroVelY_down = 0;
+		}
+		if ((heroX + heroSize > _1l && heroX < _1l + roomWidth || heroX + heroSize > _2l && heroX < _2l + roomWidth ||
+				heroX + heroSize > _3l && heroX < _3l + roomWidth) && (heroY == raeume.get(0).getHeight() * 2)) {
+			heroVelY_up = 0;
+		}
 		if (heroY < 1) {
 			heroY = 0;
 			heroVelY_up = 0;
@@ -192,7 +219,6 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 			heroY = height - heroSize;
 			heroVelY_down = 0;
 		}
-		
 		heroX = heroX + heroVelX_toR + heroVelX_toL;
 		heroY = heroY + heroVelY_down + heroVelY_up;
 		repaint();
@@ -225,9 +251,6 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 		heroVelY_up = 0;
 		heroVelY_down = 0;
 	}
-	
-	
-	
 		
 	public int get_x() {
 		return _x;
@@ -267,8 +290,6 @@ public class Dungeon extends JPanel implements ActionListener, KeyListener{
 			for (int xIndex = 0; xIndex < dungeon3x3.length; xIndex++) {
 				if (i == p-1) {
 					this.dungeon3x3[xIndex][yIndex] = r;
-					//System.out.println(raeume.get(0).remove(0););
-					//System.out.println(raeume.get(i).getComponentAt(85, 5).setText("asd"));
 					raeume.get(i).remove(1);
 					JLabel temp = new JLabel("Raum " + (i+1) + "," + dungeon3x3[xIndex][yIndex].getGegner().getName());
 					temp.setForeground(new Color(149, 149, 149));
