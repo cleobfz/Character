@@ -47,30 +47,31 @@ public class Controller {
 	public void fight(Raum raum){
 		
 		//Attack enemy
+		if(raum.getGegner().getHp()> 0){
+		
 		int gegnerlife =raum.getGegner().getHp();
 		gegnerlife = gegnerlife - eins.attack(eins.getSkill().get(0));
 		raum.getGegner().setHp(gegnerlife);
+		master.repaintRoom();
+		System.out.println("Monsterlife" + gegnerlife);
 		
-		//player gets damage
-		Double random = Math.random();
-		System.out.println(random);
+		//player gets damage randomly (50%)
+		//TODO add statbonus
+		int random = (int)((Math.random()*10)+1);
+		if(random < 5){
 		eins.setHp(eins.getHp() - raum.getGegner().getDmg());
+		System.out.println("Monster greift an :" +raum.getGegner().getDmg());
+		master.repaintTop();
+		}
+		} else {
+			raum.setGegner(null);
+			System.out.println("Monster tot");
+			master.endEncounter();
+		}
 	}
 	
-	public void enter(Raum raum){
-		
-		if(raum.getGegner() != null){
-			System.out.println("Encountering a " + raum.getGegner().getName() + " with " +raum.getGegner().getHp() + " Healthpoins");
-			fight(raum);
-//			int life =raum.getGegner().getHp();
-//			while(raum.getGegner().getHp() > 0){
-//			 life = life - eins.attack(eins.getSkill().get(0));
-//			 raum.getGegner().setHp(life);
-			System.out.println("Attack successful on " + raum.getGegner().getName()+ "  " + raum.getGegner().getHp() + " HP remain");
-//			}
-//			System.out.println(raum.getGegner().getName() +" defeated");
-//			raum.setGegner(null);
-=======
+//	public void evade()
+	
 	public void enter(Raum room){
 		if(room.getGegner() != null){
 			int dialogBtn = JOptionPane.YES_NO_OPTION;
@@ -80,18 +81,17 @@ public class Controller {
 			}else if (dialogBtn == JOptionPane.NO_OPTION){
 				
 			}
-				
-				
-			System.out.println("Encountering a " + room.getGegner().getName() + " with " +room.getGegner().getHp() + " Healthpoins");
-			int life =room.getGegner().getHp();
-			while(room.getGegner().getHp() > 0){
-			 life = life - eins.attack(eins.getSkill().get(0));
-			 room.getGegner().setHp(life);
-			System.out.println("Attack successful on " + room.getGegner().getName()+ "  " + room.getGegner().getHp() + " HP remain");
-			}
-			System.out.println(room.getGegner().getName() +" defeated");
-			room.setGegner(null);
->>>>>>> Encounter-System
+//				
+//			System.out.println("Encountering a " + room.getGegner().getName() + " with " +room.getGegner().getHp() + " Healthpoins");
+//			int life =room.getGegner().getHp();
+//			while(room.getGegner().getHp() > 0){
+//			 life = life - eins.attack(eins.getSkill().get(0));
+//			 room.getGegner().setHp(life);
+//			System.out.println("Attack successful on " + room.getGegner().getName()+ "  " + room.getGegner().getHp() + " HP remain");
+//			}
+//			System.out.println(room.getGegner().getName() +" defeated");
+//			room.setGegner(null);
+
 		} else {
 			System.out.println("No enemy :)");
 		}
@@ -166,7 +166,7 @@ public class Controller {
 		dungeon[0][1] = new Raum(orc, null,false);
 		dungeon[0][2] = new Raum(spider, new Item("bow", 2, 2),false);
 		dungeon[1][0] = new Raum(null, new Item("crap", 0, 1),false);
-		dungeon[1][1] = new Raum(new Monster(7, 8, "ghost"), new Item("armor", 2, 0),false);
+		dungeon[1][1] = new Raum(new Monster(20, 8, "ghost"), new Item("armor", 2, 0),false);
 		dungeon[1][2] = new Raum(new Monster(7, 11, "zombie"), null,false);
 		dungeon[2][0] = new Raum(orc, new Item("sword", 7, 7),false);
 		dungeon[2][1] = new Raum(goblin, new Item("crap", 2, 1),false);
