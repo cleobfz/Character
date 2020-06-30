@@ -92,7 +92,7 @@ public void fight(Raum raum){
 		/*
 		 * Exit
 		 */
-		if(room.getAusgang()){
+		if(room.getAusgang() && room.getGegner()== null){
 			JOptionPane.showMessageDialog(null, "Congratulations, you won this incredibly difficult game ");
 		} else{
 			System.out.println("No exit");
@@ -115,18 +115,18 @@ public void fight(Raum raum){
 		RNG rng = new RNG(controller);
 		ArrayList<Item> inv = new ArrayList<>();
 		
+		inv.add(new Item("Bow", 0,2));
+		inv.add(new Item("Sword", 2, 0));
+		inv.add(new Item("Sword", 1, 0));
 		inv.add(new Item("Bow", 0,6));
-		inv.add(new Item("Sword", 6, 0));
-		inv.add(new Item("Sword", 6, 0));
-		inv.add(new Item("Bow", 0,6));
-		inv.add(new Item("Potion",0, 10));
-		inv.add(new Item("Armor", 5, 50));
+		inv.add(new Item("Potion",0, 3));
+		inv.add(new Item("Armor", 0, 3));
 		
-		Item it2 = new Item("Sword", 10, 0);
-		Item it3 = new Item("Armor", 5, 50);
-		Item it4 = new Item("Bow", 5, 0);
+		Item it2 = new Item("Sword", 1, 0);
+		Item it3 = new Item("Armor", 1, 1);
+		Item it4 = new Item("Bow", 1, 0);
 		Item it5 = new Item("Crap", 0, 0);
-		Item it6 = new Item("Destroyer of Worlds", 1000, 1000);
+		Item it6 = new Item("Destroyer of Worlds", 10, 10);
 		
 		
 		inv.add(it2);
@@ -136,10 +136,10 @@ public void fight(Raum raum){
 		//Origin origin
 		//Konstruktor für Origin?
 		ArrayList<Skill> skills = new ArrayList<>();
-		skills.add(new Skill("Normal Attack", 5));
-		skills.add(new Skill("Critical Strike", 10));
-		skills.add(new Skill("Headshot", 16));
-		skills.add(new Skill("Dirty Trick", 8));
+		skills.add(new Skill("Normal Attack", 2));
+		skills.add(new Skill("Critical Strike", 3));
+		skills.add(new Skill("Headshot", 4));
+		skills.add(new Skill("Dirty Trick", 2));
 	
 		//Monster
 		Monster goblin = new Monster(2, 2, "Goblin");
@@ -163,7 +163,7 @@ public void fight(Raum raum){
 
 		
 		//Konstruktor für Skill?
-		controller.eins = new Character("Odlon Greybeard the terrible", 10, 9, inv, skills, new Origin("Dwarf","Krieger"));
+		controller.eins = new Character("Odlon Greybeard the terrible", 3, 5, inv, skills, new Origin("Dwarf","Krieger"));
 		System.out.println(controller.eins.attack(skills.get(0)));
 		
 		//enter Test

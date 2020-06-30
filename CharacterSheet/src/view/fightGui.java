@@ -32,14 +32,13 @@ public class fightGui extends JPanel{
 		add(txtFieldFightLog, BorderLayout.CENTER);
 		
 		System.out.println("Encountering a " + room.getGegner().getName() + " with " +room.getGegner().getHp() + " Healthpoins");
-		int life =room.getGegner().getHp();
-		while(room.getGegner().getHp() > 0){
-		 life = life - hero.attack(hero.getSkill().get(0));
-		 room.getGegner().setHp(life);
-		System.out.println("Attack successful on " + room.getGegner().getName()+ "  " + room.getGegner().getHp() + " HP remain");
-		}
-		System.out.println(room.getGegner().getName() +" defeated");
-		room.setGegner(null);
+		
+		JButton fightBtn = new JButton("Fight");
+		add(fightBtn,BorderLayout.WEST);
+		fightBtn.addActionListener(e -> master.controller.fight(room));
+		
+		JButton evadeBtn = new JButton("Evade");
+		add(evadeBtn,BorderLayout.EAST);
 		
 	}
 	
