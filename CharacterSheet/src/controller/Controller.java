@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import model.*;
@@ -35,28 +36,22 @@ public class Controller {
 	}
 	
 	public void enter(Raum room){
+		/**
+		 * Enemy
+		 */
 		if(room.getGegner() != null){
-			int dialogBtn = JOptionPane.YES_NO_OPTION;
-			JOptionPane.showConfirmDialog(null, "Engage on "+room.getGegner()+"?", "Enemy ahead!", dialogBtn);
-			if(dialogBtn == JOptionPane.YES_OPTION) {
+			int input = JOptionPane.showConfirmDialog(null, "Engage on "+room.getGegner()+"?", "Enemy ahead!", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("resources/monster/"+room.getGegner().getName()+".png"));
+			if(input == JOptionPane.YES_OPTION) {				
 				master.startFight(room);				
-			}else if (dialogBtn == JOptionPane.NO_OPTION){
-				
-			}
-				
-				
-			System.out.println("Encountering a " + room.getGegner().getName() + " with " +room.getGegner().getHp() + " Healthpoins");
-			int life =room.getGegner().getHp();
-			while(room.getGegner().getHp() > 0){
-			 life = life - eins.attack(eins.getSkill().get(0));
-			 room.getGegner().setHp(life);
-			System.out.println("Attack successful on " + room.getGegner().getName()+ "  " + room.getGegner().getHp() + " HP remain");
-			}
-			System.out.println(room.getGegner().getName() +" defeated");
-			room.setGegner(null);
+			}else if (input == JOptionPane.NO_OPTION){
+			System.out.println("RUN YOU FOOL!");	
+			}			
 		} else {
 			System.out.println("No enemy :)");
 		}
+		/*
+		 * Loot
+		 */
 		if(room.getSchatz() != null){
 			eins.getInventory().add(room.getSchatz());
 			System.out.println("Added to Inventory: " + room.getSchatz().getName());
@@ -66,6 +61,9 @@ public class Controller {
 		} else{
 			System.out.println("No Treasure -.-");
 		}
+		/*
+		 * Exit
+		 */
 		if(room.getAusgang()){
 			JOptionPane.showMessageDialog(null, "Congratulations, you won this incredibly difficult game ");
 		} else{
@@ -86,6 +84,7 @@ public class Controller {
 	
 	public static void main(String[] args) {
 		Controller controller = new Controller();
+		RNG rng = new RNG(controller);
 		ArrayList<Item> inv = new ArrayList<>();
 		
 		inv.add(new Item("Bow", 0,6));

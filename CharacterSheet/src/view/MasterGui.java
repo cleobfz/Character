@@ -15,11 +15,12 @@ public class MasterGui {
 	protected JPanel  topPanel, botPanel;
 	protected Controller controller;
 	protected JFrame frame;
-	protected JPanel dungeonPanel;	
+	protected JPanel dungeonPanel;
+	protected Dungeon dungeon;
 
 	public MasterGui(Controller controller) {
-		
 		this.controller = controller;
+		dungeon = new Dungeon(controller);
 		
 //		JLabel centerGui = new JLabel();
 //		//centergui muss noch implementiert werden hier steht nur ein Platzhalter
@@ -35,7 +36,7 @@ public class MasterGui {
 		frame.setTitle("MonsterSpalter2020");
 		frame.setLocation(300,0);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new BorderLayout());
+		frame.setLayout(new BorderLayout());		
 		
 		//TopPanel
 		topPanel = new TopGui(this);
@@ -43,7 +44,6 @@ public class MasterGui {
 		
 		botPanel = new  BotGui(this);
 		frame.add(botPanel, BorderLayout.SOUTH);
-		
 		
 		//CenterPanel
 		dungeonPanel = new Dungeon(controller);
@@ -64,12 +64,10 @@ public class MasterGui {
 		frame.setVisible(true);		
 	}
 	
-	
-	//TODO repain roompanel
 	public void repaintRoom(){
 		frame.remove(roomPanel);
 		roomPanel = new ImagePanel(
-				new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this); 
+		new ImageIcon(System.getProperty("user.dir")+("/resources/ui/screen/stonewall2.png")).getImage(),this); 
 		frame.add (roomPanel, BorderLayout.EAST);
 		frame.repaint();
 		frame.pack();
@@ -91,18 +89,14 @@ public class MasterGui {
 		frame.pack();
 	}
 	
-	
 	public Controller getcontroller(){
 		return controller;
 	}
 	
-	
-	//open Inventory
 	protected void openInventory() {
 		new InvGui(this);
 	}
 	
-	//TODO addCreateGUI
 	protected void createRoom(){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -116,7 +110,6 @@ public class MasterGui {
 			}
 		});
 	}
-
 
 	public void startFight(Raum room) {
 		JPanel fightGui = new fightGui(this, room);
