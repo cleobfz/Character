@@ -5,15 +5,17 @@ import java.awt.EventQueue;
 import java.io.IOException;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import controller.Controller;
+import model.Raum;
 
 public class MasterGui {
 	protected ImagePanel roomPanel;
 	protected JPanel  topPanel, botPanel;
 	protected Controller controller;
 	protected JFrame frame;
-	
+	protected JPanel dungeonPanel;	
 
 	public MasterGui(Controller controller) {
 		
@@ -44,7 +46,8 @@ public class MasterGui {
 		
 		
 		//CenterPanel
-		frame.add(new Dungeon(controller), BorderLayout.CENTER); //centergui
+		dungeonPanel = new Dungeon(controller);
+		frame.add(dungeonPanel, BorderLayout.CENTER); //centergui
 		
 		//RoomPanel(East)
 		roomPanel = new ImagePanel(
@@ -112,6 +115,15 @@ public class MasterGui {
 				}
 			}
 		});
+	}
+
+
+	public void startFight(Raum room) {
+		JPanel fightGui = new fightGui(this, room);
+		frame.remove(dungeonPanel);
+		frame.add(fightGui, BorderLayout.CENTER);
+		
+		
 	}
 	
 }
