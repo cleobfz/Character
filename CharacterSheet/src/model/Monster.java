@@ -49,7 +49,6 @@ public class Monster implements Serializable {
 		this.dmg = dmg;
 	}
 
-
 	public void setName(String Monster) {
 		name = Monster;
 	}

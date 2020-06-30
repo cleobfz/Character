@@ -6,14 +6,14 @@ import javax.swing.JOptionPane;
 
 import model.*;
 import model.Character;
-import view.MasterGui;
+import view.*;
 
 public class Controller {
 	Character eins;
 	Item selectedItem;
 	Raum aktuellerRaum = new Raum(null,null,true);
 	MasterGui master;
-	
+	private Raum[][] aktuellerdungeon = new Raum[3][3];
 	
 	public Character getCharacter() {
 		return eins;
@@ -36,18 +36,40 @@ public class Controller {
 		master.repaintRoom();
 	}
 	
+	public Raum[][] getRaumArray(){
+		return aktuellerdungeon;
+	}
+	
+	public void setDungeonarray(Raum[][] aktuellerdungeon){
+		this.aktuellerdungeon = aktuellerdungeon;
+	}
+	
+	public void fight(Raum raum){
+		
+		//Attack enemy
+		int gegnerlife =raum.getGegner().getHp();
+		gegnerlife = gegnerlife - eins.attack(eins.getSkill().get(0));
+		raum.getGegner().setHp(gegnerlife);
+		
+		//player gets damage
+		Double random = Math.random();
+		System.out.println(random);
+		eins.setHp(eins.getHp() - raum.getGegner().getDmg());
+	}
+	
 	public void enter(Raum raum){
 		
 		if(raum.getGegner() != null){
 			System.out.println("Encountering a " + raum.getGegner().getName() + " with " +raum.getGegner().getHp() + " Healthpoins");
-			int life =raum.getGegner().getHp();
-			while(raum.getGegner().getHp() > 0){
-			 life = life - eins.attack(eins.getSkill().get(0));
-			 raum.getGegner().setHp(life);
+			fight(raum);
+//			int life =raum.getGegner().getHp();
+//			while(raum.getGegner().getHp() > 0){
+//			 life = life - eins.attack(eins.getSkill().get(0));
+//			 raum.getGegner().setHp(life);
 			System.out.println("Attack successful on " + raum.getGegner().getName()+ "  " + raum.getGegner().getHp() + " HP remain");
-			}
-			System.out.println(raum.getGegner().getName() +" defeated");
-			raum.setGegner(null);
+//			}
+//			System.out.println(raum.getGegner().getName() +" defeated");
+//			raum.setGegner(null);
 		} else {
 			System.out.println("No enemy :)");
 		}
@@ -82,16 +104,16 @@ public class Controller {
 		Controller controller = new Controller();
 		ArrayList<Item> inv = new ArrayList<>();
 		
-		inv.add(new Item("Bow", 0,6));
-		inv.add(new Item("Sword", 6, 0));
-		inv.add(new Item("Sword", 6, 0));
-		inv.add(new Item("Bow", 0,6));
-		inv.add(new Item("Potion",0, 10));
-		inv.add(new Item("Armor", 5, 50));
+		inv.add(new Item("Bow", 0,2));
+		inv.add(new Item("Sword", 2, 0));
+		inv.add(new Item("Sword", 2, 0));
+		inv.add(new Item("Bow", 0,2));
+		inv.add(new Item("Potion",0, 1));
+		inv.add(new Item("Armor", 1, 2));
 		
-		Item it2 = new Item("Sword", 10, 0);
-		Item it3 = new Item("Armor", 5, 50);
-		Item it4 = new Item("Bow", 5, 0);
+		Item it2 = new Item("Sword", 2, 0);
+		Item it3 = new Item("Armor", 1, 1);
+		Item it4 = new Item("Bow", 1, 0);
 		Item it5 = new Item("Crap", 0, 0);
 		Item it6 = new Item("Destroyer of Worlds", 1000, 1000);
 		
@@ -103,10 +125,10 @@ public class Controller {
 		//Origin origin
 		//Konstruktor für Origin?
 		ArrayList<Skill> skills = new ArrayList<>();
-		skills.add(new Skill("Normal Attack", 5));
-		skills.add(new Skill("Critical Strike", 10));
-		skills.add(new Skill("Headshot", 16));
-		skills.add(new Skill("Dirty Trick", 8));
+		skills.add(new Skill("Normal Attack", 1));
+		skills.add(new Skill("Critical Strike", 2));
+		skills.add(new Skill("Headshot", 3));
+		skills.add(new Skill("Dirty Trick", 2));
 	
 		//Monster
 		Monster goblin = new Monster(2, 2, "Goblin");
@@ -116,21 +138,24 @@ public class Controller {
 		Monster ghost = new Monster (7,6,"Ghost");
 		Monster zombie = new Monster (4,5,"Zombie");
 		//Raum Dungeon
+		Raum[][] dungeon = new Raum[3][3];
 		
-		Raum raum1 = new Raum(goblin, it6, true);
-		Raum raum2 = new Raum(dragon,it5,false);
-		Raum raum3 = new Raum(spider,it2,false);
-		Raum raum4 = new Raum(orc,null,false);
-		Raum raum5 = new Raum(ghost,it3,false);
-		Raum raum6 = new Raum(zombie,null,false);
-		Raum raum7 = new Raum(goblin,null,false);
-		Raum raum8 = new Raum(null,null,false);
-		Raum raum9 = new Raum(goblin,it3,false);
-		
+		dungeon[0][0] = new Raum(goblin, it4,false);
+		dungeon[0][1] = new Raum(orc, null,false);
+		dungeon[0][2] = new Raum(spider, new Item("bow", 2, 2),false);
+		dungeon[1][0] = new Raum(null, new Item("crap", 0, 1),false);
+		dungeon[1][1] = new Raum(new Monster(7, 8, "ghost"), new Item("armor", 2, 0),false);
+		dungeon[1][2] = new Raum(new Monster(7, 11, "zombie"), null,false);
+		dungeon[2][0] = new Raum(orc, new Item("sword", 7, 7),false);
+		dungeon[2][1] = new Raum(goblin, new Item("crap", 2, 1),false);
+		dungeon[2][2] = new Raum(new Monster(150, 150, "dragon"), new Item("destroyer of Worlds", 2, 2),true);
 
 		
+		
+		controller.setDungeonarray(dungeon);
+		
 		//Konstruktor für Skill?
-		controller.eins = new Character("Odlon Greybeard the terrible", 10, 9, inv, skills, new Origin("Dwarf","Krieger"));
+		controller.eins = new Character("Odlon Greybeard the terrible", 3, 2, inv, skills, new Origin("Dwarf","Krieger"));
 		System.out.println(controller.eins.attack(skills.get(0)));
 		
 		//enter Test

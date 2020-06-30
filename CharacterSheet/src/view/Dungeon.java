@@ -37,18 +37,8 @@ public class Dungeon extends JPanel{
 
 	public Dungeon(Controller c) {
 		
-		//fill roomarray[][]
 		
-		dungeon3x3[0][0] = new Raum(new Monster(3, 3, "goblin"), new Item("crap", 2, 1),false);
-		dungeon3x3[0][1] = new Raum(new Monster(5, 6, "orc"), null,false);
-		dungeon3x3[0][2] = new Raum(new Monster(4, 4, "spider"), new Item("bow", 5, 5),false);
-		dungeon3x3[1][0] = new Raum(null, new Item("crap", 2, 1),false);
-		dungeon3x3[1][1] = new Raum(new Monster(7, 8, "ghost"), new Item("armor", 8, 0),false);
-		dungeon3x3[1][2] = new Raum(new Monster(7, 11, "zombie"), null,false);
-		dungeon3x3[2][0] = new Raum(new Monster(9, 4, "orc"), new Item("sword", 7, 7),false);
-		dungeon3x3[2][1] = new Raum(new Monster(3, 2, "goblin"), new Item("crap", 2, 1),false);
-		dungeon3x3[2][2] = new Raum(new Monster(150, 150, "dragon"), new Item("destroyer of Worlds", 100, 100),true);
-		
+		dungeon3x3 = c.getRaumArray();
 		
 		
 		con = c;
@@ -180,63 +170,4 @@ public class Dungeon extends JPanel{
 		return xyKoordinaten;		
 	}
 
-
-	
-  //TEST:
-//	public static void main(String[] args) {
-//		JFrame mf;
-//		mf = new JFrame();
-//		mf.setTitle("Dungeon");
-//		mf.setLocation(100,100);
-//		mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//
-//		BorderLayout mainLayout = new BorderLayout();
-//		mf.getContentPane().setLayout(mainLayout);
-//		
-//		
-//		JPanel west = new JPanel();
-//		JLabel westLabel = new JLabel("west");
-//		west.add(westLabel);
-//		mf.add(west, BorderLayout.WEST);
-//		west.setBackground(Color.MAGENTA);
-//		
-//		JPanel east = new JPanel();
-//		JLabel eastLabel = new JLabel("east");
-//		east.add(eastLabel);
-//		mf.add(east, BorderLayout.EAST);
-//		east.setBackground(Color.ORANGE);
-//		
-//		
-//		//Character für Test
-////		ArrayList<Item> inv = new ArrayList<>();
-////		inv.add(new Item("Peng", 2,2));
-////		inv.add(new Item("Pow", 4,5));
-////		ArrayList<Skill> skills = new ArrayList<>();
-////		skills.add(new Skill("Pew pew", 5));
-////		Character c = new Character("Odlon", 3, 3, inv, skills, new Origin("Dwarf","Krieger"));
-//		Dungeon d3 = new Dungeon(new Controller());
-//		//Raum newRaum = new Controller().getRaum(2, 2);
-//		//System.out.println(newRaum);
-//		//d3.setPosition(newRaum, 9);
-//		//JPanel helper = new JPanel();
-//		//helper.add(d3);
-//		//helper.setBackground(Color.blue);
-//		mf.add(d3, BorderLayout.CENTER);
-//		
-//		//Dungeon d2 = new Dungeon(c, 2);
-//		//int[] newPosition = d2.move(39);
-////		mf.add(d2);
-////		d2.setPosition(4);
-////		System.out.println(d2.getPosition());
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-////		d2.setPosition(3);
-////		System.out.println(d2.getX());
-////		System.out.println(d2.getY());
-////		System.out.println(d2.getPosition());
-//				
-//		mf.pack();
-//		mf.setVisible(true);
-//	}//end of main
 }
