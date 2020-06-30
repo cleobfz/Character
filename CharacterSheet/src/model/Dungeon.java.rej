@@ -1,0 +1,10 @@
+diff a/CharacterSheet/src/model/Dungeon.java b/CharacterSheet/src/model/Dungeon.java	(rejected hunks)
+@@ -77,7 +77,7 @@
+ //				move(e.getKeyCode());
+ //			}
+ //		});
+-		
++//	
+ 		tm.start();
+ 		addKeyListener(this);
+ 		//setFocusable(true);
