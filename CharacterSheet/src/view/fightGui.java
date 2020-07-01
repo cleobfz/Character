@@ -40,7 +40,7 @@ public class fightGui extends JPanel{
 		JButton fleeBtn = new JButton("flee");
 		
 		add(fleeBtn,BorderLayout.EAST);
-		fleeBtn.addActionListener(e -> master.endEncounter());
+		fleeBtn.addActionListener(e -> master.controller.flee(room));
 		
 	}
 	

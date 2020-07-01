@@ -39,7 +39,7 @@ public class Controller {
 public void fight(Raum raum){
 		
 		//Attack enemy
-		if(raum.getGegner().getHp()> 0){
+		if(raum.getGegner().getHp()> 0 ){
 		
 		int gegnerlife =raum.getGegner().getHp();
 		gegnerlife = gegnerlife - eins.attack(eins.getSkill().get(0));
@@ -58,11 +58,28 @@ public void fight(Raum raum){
 		} else {
 			raum.setGegner(null);
 			System.out.println("Monster tot");
+			if(raum.getSchatz() != null){
+			eins.getInventory().add(raum.getSchatz());
+			System.out.println("Added to Inventory: " + raum.getSchatz().getName());
+			raum.setSchatz(null);
+			}
+			master.repaintBot();
+			master.repaintTop();
 			master.endEncounter();
 		}
 	}
 	
-	
+ 	public void flee(Raum raum){
+ 		int random = (int)((Math.random()*10)+1);
+ 		if(random < 2){
+ 			eins.setHp(eins.getHp()- raum.getGegner().getDmg());
+ 			master.repaintTop();
+ 			JOptionPane.showMessageDialog(null, "flee failed you received "+raum.getGegner().getDmg()+ " damage by " + raum.getGegner() +"");
+ 		}
+ 		master.endEncounter();
+ 	}
+
+
 	public void enter(Raum room){
 		/**
 		 * Enemy

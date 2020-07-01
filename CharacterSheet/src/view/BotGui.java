@@ -116,7 +116,8 @@ public class BotGui extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						SkillButton currentButton =(SkillButton) e.getSource(); 
-						System.out.println(master.controller.getCharacter().attack(currentButton.getSkill()));	
+						System.out.println(master.controller.getCharacter().attack(currentButton.getSkill()));
+//						master.controller.fight(master.controller.getRaum());
 				    }	
 				});	
 			}
